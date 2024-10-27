@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public GameObject bullet;
     private float horizontal;
     public float speed = 5f;
 
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate(new Vector3(horizontal, 0f, 0f));
 
-
+        Initiate(bullet, transform.position, transform.rotation);
 
     }
 }
