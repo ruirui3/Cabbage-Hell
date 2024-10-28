@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate(new Vector3(horizontal, 0f, 0f));
 
-        Initiate(bullet, transform.position, transform.rotation);
+        Instantiate(bullet, transform.position, transform.rotation);
 
     }
 }

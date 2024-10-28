@@ -244,7 +244,6 @@ GameObject:
   m_Component:
   - component: {fileID: 811591312}
   - component: {fileID: 811591311}
-  - component: {fileID: 811591310}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -252,18 +251,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &811591310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811591309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 648b08c4cfa9c47e48e3e481d7dd68e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &811591311
 SpriteRenderer:
   m_ObjectHideFlags: 0
