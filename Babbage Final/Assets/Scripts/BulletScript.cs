@@ -20,6 +20,7 @@ public class BulletScript : MonoBehaviour
         }
         if (notInScreen()){
             isMoving = false;
+            gopoof();
         }
 
     }
