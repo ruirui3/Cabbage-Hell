@@ -20,10 +20,12 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         horizontal *= speed * Time.deltaTime;
-
         transform.Translate(new Vector3(horizontal, 0f, 0f));
 
-        Instantiate(bullet, transform.position, transform.rotation);
-
+        if (Input.GetKey(KeyCode.Space)) {
+            // Vector3 spawnPosition = transform.position + Vector3.up * (transform.localScale.y + bullet.transform.localScale.y);
+            Vector3 spawnPosition = transform.position + Vector3.up * 1.5f; // temporary displacement to avoid bumping into plane. TODO: make bullet not collide with plane
+            Instantiate(bullet, spawnPosition, transform.rotation);
+        }
     }
 }
