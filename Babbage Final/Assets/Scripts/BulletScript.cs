@@ -33,7 +33,12 @@ public class BulletScript : MonoBehaviour
         gopoof();
     }
     private void gopoof() {
-        // Disable the GameObject
-        gameObject.SetActive(false);
+        // Disable the GameObject - gives an error when playercontroller code tries to respawn it? 
+        //gameObject.SetActive(false);
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = false; // Hide the bullet
+        }
     }
 }
