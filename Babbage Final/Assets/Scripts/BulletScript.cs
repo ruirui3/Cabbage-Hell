@@ -22,6 +22,9 @@ public class BulletScript : MonoBehaviour
             isMoving = false;
             gopoof();
         }
+    if (notInScreen()) {
+        Destroy(gameObject);
+    }
 
     }
     private bool notInScreen(){
