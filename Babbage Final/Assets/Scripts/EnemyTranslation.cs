@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyTranslation : MonoBehaviour
 {
     float speed = 3.5f;
+    float cameraYBound = -5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,10 @@ public class EnemyTranslation : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.down * Time.deltaTime * speed);
+        if (transform.position.y < cameraYBound)
+        {
+            Destroy(gameObject);
+        }
         //do a if y reach like -3f or smth destroy() obj
         
     }
