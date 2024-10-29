@@ -38,7 +38,7 @@ public class BulletScript : MonoBehaviour
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
-            spriteRenderer.enabled = false; // Hide the bullet
+            gameObject.SetActive(false); // delete the bullet ?
         }
     }
 }
