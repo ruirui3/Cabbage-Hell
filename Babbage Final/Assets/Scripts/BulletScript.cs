@@ -22,9 +22,6 @@ public class BulletScript : MonoBehaviour
             isMoving = false;
             gopoof();
         }
-    if (notInScreen()) {
-        Destroy(gameObject);
-    }
 
     }
     private bool notInScreen(){
@@ -32,16 +29,12 @@ public class BulletScript : MonoBehaviour
         //^ Viewport position in Unity refers to the coordinates of a point in relation to the camera's viewport
         return viewportPosition.y > 1; //1 is top of the screen
     }
-    private void whenCollide(Collision2D collision) {
+    private void OnCollisionEnter2D(Collision2D collision) {
         gopoof();
     }
     private void gopoof() {
         // Disable the GameObject - gives an error when playercontroller code tries to respawn it? 
         //gameObject.SetActive(false);
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-        {
-            gameObject.SetActive(false); // delete the bullet ?
-        }
+        Destroy(gameObject);
     }
 }
