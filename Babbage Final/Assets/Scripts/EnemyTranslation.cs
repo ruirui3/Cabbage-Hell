@@ -20,7 +20,22 @@ public class EnemyTranslation : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        //do a if y reach like -3f or smth destroy() obj
-        
+        //do a if y reach like -3f or smth destroy() obj)
+    }
+
+    private void gopoof() {
+        // Disable the GameObject - gives an error when playercontroller code tries to respawn it? 
+        //gameObject.SetActive(false);
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            gameObject.SetActive(false); // delete the bullet ?
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "bullet") {
+            gopoof();
+        }
     }
 }
