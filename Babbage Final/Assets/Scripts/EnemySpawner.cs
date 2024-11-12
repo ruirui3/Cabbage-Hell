@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Enemy;
     Transform[] spawnPoints; 
     public int spawnCount = 0;
-    float spawnInterval = 1.5f;
+    float spawnInterval = 0.5f;
     float randomX;
     private float fixedY = 4f;
     private float randomXMin = -6f;

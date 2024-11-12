@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyTranslation : MonoBehaviour
 {
-    float speed = 3.5f;
+    float speed = 4.5f;
     float cameraYBound = -5f;
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,24 @@ public class EnemyTranslation : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        
         if (other.gameObject.tag == "bullet") {
+            
+            gopoof();
+        }
+        if (other.gameObject.tag == "Player")
+        {
+            var health = other.GetComponent<PlayerHealth>();
+            var scoreDown = other.GetComponent<ScoreTracker>();
+            if (health != null)
+            {
+                health.TakeDamage(1);
+            }
+            if (scoreDown != null)
+            {
+                scoreDown.RemoveScore(100);
+            }
+            Debug.Log(scoreDown.GetScore());
             gopoof();
         }
     }
