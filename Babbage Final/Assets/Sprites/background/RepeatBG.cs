@@ -11,7 +11,7 @@ public class RepeatBG : MonoBehaviour
     void Start()
     {
         startPos = transform.position; // remember starting pos as current position
-        repeatHeight = gameObject.GetComponent<Renderer>().bounds.size.y / 2; // repeat for half of image height
+        repeatHeight = gameObject.GetComponent<Renderer>().bounds.size.y; // repeat for half of image height
     }
 
     // Update is called once per frame
