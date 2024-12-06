@@ -6,6 +6,7 @@ public class EnemyTranslation : MonoBehaviour
 {
     float speed = 4.5f;
     float cameraYBound = -5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,17 +42,20 @@ public class EnemyTranslation : MonoBehaviour
         }
         if (other.gameObject.tag == "Player")
         {
-            var health = other.GetComponent<PlayerHealth>();
-            var scoreDown = other.GetComponent<ScoreTracker>();
+            
+            ManageHealth health = other.gameObject.GetComponentInChildren<ManageHealth>();
+
             if (health != null)
             {
-                health.TakeDamage(1);
+                health.TakeDamage(4f);
             }
-            if (scoreDown != null)
+            else
             {
-                scoreDown.RemoveScore(100);
+                Debug.LogError("ManageHealth component is missing on the Player!");
             }
-            Debug.Log(scoreDown.GetScore());
+
+
+
             gopoof();
         }
     }
