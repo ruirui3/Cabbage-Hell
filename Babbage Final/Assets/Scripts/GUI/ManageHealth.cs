@@ -8,7 +8,7 @@ public class ManageHealth : MonoBehaviour
 
     public Image healthBar;
     public float healthAmount = 100f;
-    public float maxHealth;
+    private float maxHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -19,12 +19,11 @@ public class ManageHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
-        
+
 
         //test cases 
-        if (Input.GetKeyDown(KeyCode.Return))
+        /*if (Input.GetKeyDown(KeyCode.Return))
         {
             TakeDamage(20);
         }
@@ -32,7 +31,7 @@ public class ManageHealth : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Heal(5);
-        }
+        }*/
 
 
     }
