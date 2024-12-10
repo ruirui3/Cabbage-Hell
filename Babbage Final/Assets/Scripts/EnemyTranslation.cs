@@ -44,10 +44,11 @@ public class EnemyTranslation : MonoBehaviour
         {
             
             ManageHealth health = other.gameObject.GetComponentInChildren<ManageHealth>();
-
+            
             if (health != null)
             {
                 health.TakeDamage(4f);
+                
             }
             else
             {

@@ -10,8 +10,8 @@ public class EnemySpawner : MonoBehaviour
     float spawnInterval = 0.5f;
     float randomX;
     private float fixedY = 4f;
-    private float randomXMin = -6f;
-    private float randomXMax = 6f;
+    private float randomXMin = -3f;
+    private float randomXMax = 3f;
 
     
     // Start is called before the first frame update
