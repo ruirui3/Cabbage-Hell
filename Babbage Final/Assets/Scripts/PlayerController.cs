@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     public int rate = 1;
     public int ms = 0;
+    private float leftBound = -3f;
+    private float rightBound = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +23,24 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         ms ++;
-        horizontal = Input.GetAxis("Horizontal");
-        horizontal *= speed * Time.deltaTime;
-        transform.Translate(new Vector3(horizontal, 0f, 0f));
+
+
+
+
+        if (transform.position.x > leftBound && transform.position.x < rightBound) {
+            horizontal = Input.GetAxis("Horizontal");
+            horizontal *= speed * Time.deltaTime;
+            transform.Translate(new Vector3(horizontal, 0f, 0f));
+        } else if (transform.position.x <= leftBound)
+        {
+            transform.position = new Vector3(leftBound+0.001f, transform.position.y, transform.position.z);
+
+        } else
+        {
+            transform.position = new Vector3(rightBound - 0.001f, transform.position.y, transform.position.z);
+        }
+
+        
 
         int count = 360/rate;
 

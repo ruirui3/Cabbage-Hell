@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
+    public ManageScore manager;
     public float speed = 5f;
     public bool isMoving = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject canvas = GameObject.Find("Canvas");
+        manager = canvas.transform.Find("Score").GetComponent<ManageScore>();
+        //Can also include scripts and other canvas variables
+
     }
 
     // Update is called once per frame
@@ -30,11 +35,14 @@ public class BulletScript : MonoBehaviour
         return viewportPosition.y > 1; //1 is top of the screen
     }
     private void OnCollisionEnter2D(Collision2D collision) {
+        
         gopoof();
     }
     private void gopoof() {
         // Disable the GameObject - gives an error when playercontroller code tries to respawn it? 
         //gameObject.SetActive(false);
+        manager.AddScore(2); 
+        
         Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D other)
