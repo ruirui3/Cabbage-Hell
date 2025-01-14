@@ -7,6 +7,10 @@ public class BulletScript : MonoBehaviour
     public ManageScore manager;
     public float speed = 5f;
     public bool isMoving = true;
+    public bool isCarrot = false;
+    private float currentPierceValue;
+    public float maxTimesPierced;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +18,14 @@ public class BulletScript : MonoBehaviour
         GameObject canvas = GameObject.Find("Canvas");
         manager = canvas.transform.Find("Score").GetComponent<ManageScore>();
         //Can also include scripts and other canvas variables
+        if (transform.name.Equals("CarrotBullet"))
+        {
+            isCarrot = true;
+            currentPierceValue = 0;
+        }
+        
+
+
 
     }
 
@@ -41,14 +53,26 @@ public class BulletScript : MonoBehaviour
     private void gopoof() {
         // Disable the GameObject - gives an error when playercontroller code tries to respawn it? 
         //gameObject.SetActive(false);
-        manager.AddScore(2); 
+         
         
         Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy") {
-            gopoof();
+            manager.AddScore(2);
+            
+            if (!isCarrot || currentPierceValue >= maxTimesPierced)
+            {
+                gopoof();
+            }
+            if (isCarrot)
+            {
+                currentPierceValue++;
+            }
+
+
+
         }
     }
 }

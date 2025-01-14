@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyTranslation : MonoBehaviour
 {
     float speed = 4.5f;
-    float cameraYBound = -5f;
+    //float cameraYBound = -5f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,11 +17,22 @@ public class EnemyTranslation : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.down * Time.deltaTime * speed);
-        if (transform.position.y < cameraYBound)
-        {
-            Destroy(gameObject);
-        }
+        
         //do a if y reach like -3f or smth destroy() obj)
+
+        
+        if (notInScreen())
+        {
+            
+            gopoof();
+        }
+    }
+
+    private bool notInScreen()
+    {
+        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(transform.position); //set variable to cameras position
+        //^ Viewport position in Unity refers to the coordinates of a point in relation to the camera's viewport
+        return viewportPosition.y > 1; //1 is top of the screen
     }
 
     private void gopoof() {
