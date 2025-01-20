@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public int spawnCount = 0;
     float spawnInterval = 0.5f;
     float randomX;
-    private float fixedY = 4f;
+    private float fixedY = 5f;
     private float randomXMin = -3f;
     private float randomXMax = 3f;
 
