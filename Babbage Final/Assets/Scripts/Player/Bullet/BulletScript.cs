@@ -10,6 +10,7 @@ public class BulletScript : MonoBehaviour
     public bool isCarrot = false;
     private float currentPierceValue;
     public float maxTimesPierced;
+    public AudioClip explosionSfx;
     
 
     // Start is called before the first frame update
@@ -23,10 +24,6 @@ public class BulletScript : MonoBehaviour
             isCarrot = true;
             currentPierceValue = 0;
         }
-        
-
-
-
     }
 
     // Update is called once per frame
@@ -63,8 +60,9 @@ public class BulletScript : MonoBehaviour
             manager.AddScore(2);
             
             if (!isCarrot || currentPierceValue >= maxTimesPierced)
-            {
+            {   
                 gopoof();
+                AudioSource.PlayClipAtPoint(explosionSfx, transform.position);
             }
             if (isCarrot)
             {

@@ -100,9 +100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648b08c4cfa9c47e48e3e481d7dd68e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
   speed: 3
-  rotationRate: 180
   isMoving: 1
+  isCarrot: 0
+  maxTimesPierced: 0
+  explosionSfx: {fileID: 8300000, guid: 3f2ebea1279658a4baf7d1a8d809db8d, type: 3}
 --- !u!58 &2726092040658285093
 CircleCollider2D:
   m_ObjectHideFlags: 0

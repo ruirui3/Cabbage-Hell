@@ -6,6 +6,8 @@ public class EnemyTranslation : MonoBehaviour
 {
     float speed = 4.5f;
     //float cameraYBound = -5f;
+    public AudioClip damageSFX;
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +61,7 @@ public class EnemyTranslation : MonoBehaviour
             if (health != null)
             {
                 health.TakeDamage(4f);
+                AudioSource.PlayClipAtPoint(damageSFX, transform.position);
                 
             }
             else
