@@ -6,10 +6,10 @@ public class TurtleSpawnerScript : MonoBehaviour
 {
     public GameObject turtle;
     Transform[] spawnPoints; 
-    public float delayTime = 2f;
-    public float randXRange = 3f;
+    public float delayTime = 1f;
+    public float randXRange = 3.2f;
     public float randX;
-    public float setY = 7f;
+    public float setY = 5.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +26,6 @@ public class TurtleSpawnerScript : MonoBehaviour
     void spawnTurtle() {
         float randX = Random.Range(-randXRange, randXRange);
         
-        Instantiate(turtle, new Vector2(randX, setY), transform.rotation); //obj, pos (use randomPos), rotation
+        Instantiate(turtle, new Vector2(randX, setY), transform.rotation);
     }
 }

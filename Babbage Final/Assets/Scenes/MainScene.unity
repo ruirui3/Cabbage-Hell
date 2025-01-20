@@ -298,7 +298,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5197003947273135484, guid: c1982d5bc3305dd4387c99718903425b, type: 3}
       propertyPath: m_Name
-      value: Square
+      value: Bunny Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 6087539229144237645, guid: c1982d5bc3305dd4387c99718903425b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -611,7 +611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3496435535633281225, guid: e48c5b7ff88174010930d90692d0d98e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -3.2
       objectReference: {fileID: 0}
     - target: {fileID: 3496435535633281225, guid: e48c5b7ff88174010930d90692d0d98e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -652,7 +652,7 @@ PrefabInstance:
     - target: {fileID: 5094743000176971928, guid: e48c5b7ff88174010930d90692d0d98e, type: 3}
       propertyPath: moveTo
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1071819733}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1574,11 +1574,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01bbabf1c6675443bbcbf01a058a3004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turtle: {fileID: 0}
-  delayTime: 0.5
-  randXRange: 3
+  turtle: {fileID: 1898100591}
+  delayTime: 1
+  randXRange: 3.2
   randX: 3
-  setY: 8
+  setY: 5.5
 --- !u!224 &1809480914
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1598,6 +1598,11 @@ RectTransform:
   m_AnchoredPosition: {x: -0.53980654, y: 0.13111079}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1898100591 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1734988937037452433, guid: e48c5b7ff88174010930d90692d0d98e, type: 3}
+  m_PrefabInstance: {fileID: 818355093}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1983527754
 GameObject:
   m_ObjectHideFlags: 0
