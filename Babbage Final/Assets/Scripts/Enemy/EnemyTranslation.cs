@@ -8,21 +8,42 @@ public class EnemyTranslation : MonoBehaviour
     //float cameraYBound = -5f;
     public AudioClip damageSFX;
 
+    bool isMoving;
+    bool isInTornado;
+    public GameObject tornado;
+    public Transform tornadoTransform;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        isMoving = true;
+        isInTornado = false;
+        tornadoTransform = tornado.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.down * Time.deltaTime * speed);
-        
-        //do a if y reach like -3f or smth destroy() obj)
+        var step = speed * Time.deltaTime;
+        //transform.Translate(Vector2.down * Time.deltaTime * speed);
 
-        
+        if (isInTornado)
+        {
+            TurnOffMoving();
+            transform.position = Vector3.MoveTowards(transform.position, tornadoTransform.position, speed);
+
+
+        }
+        else
+        {
+            TurnOnMoving();
+        }
+
+        if (isMoving)
+        {
+            transform.Translate(Vector2.down * Time.deltaTime * speed);
+        }
+
         if (notInScreen())
         {
             
@@ -74,4 +95,16 @@ public class EnemyTranslation : MonoBehaviour
             gopoof();
         }
     }
+
+    public void TurnOffMoving()
+    {
+        isMoving = false;
+    }
+
+    public void TurnOnMoving()
+    {
+        isMoving = true;
+    }
+
+
 }
