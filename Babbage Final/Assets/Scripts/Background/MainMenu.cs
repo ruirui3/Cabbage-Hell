@@ -11,4 +11,8 @@ public class MainMenu : MonoBehaviour
     public void Customize(){
         SceneManager.LoadSceneAsync("Customization");
     }
+
+    public void Homescreen(){
+        SceneManager.LoadSceneAsync("Main Menu");
+    }
 }
