@@ -8,7 +8,6 @@ using UnityEngine;
  */
 public class Statistics : MonoBehaviour
 {
-
     private int vitality;
     private int intelligence;
     private int reju;
@@ -85,7 +84,6 @@ public class Statistics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     

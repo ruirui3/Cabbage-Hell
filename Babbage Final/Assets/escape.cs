@@ -15,7 +15,7 @@ public class escape : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Escape)){
-            Debug.log("Escape key was released");
+            Debug.Log("Escape key was released");
             SceneManager.LoadSceneAsync("Main Menu");
         }
     }
