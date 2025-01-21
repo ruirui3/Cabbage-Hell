@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class escape : MonoBehaviour
 {
+    //GameOver thing;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,7 @@ public class escape : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Escape)){
             Debug.Log("Escape key was released");
+            //thing.End();
             SceneManager.LoadSceneAsync("Main Menu");
         }
     }

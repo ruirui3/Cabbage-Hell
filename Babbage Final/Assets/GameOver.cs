@@ -13,10 +13,15 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
 
     }
-
+    // not working implementation of escape to end screen 
+    //public void End(){
+    //    img.SetActive(true);
+    //}
     void Update(){
         if (player.healthAmount <= 0){
             img.SetActive(true);
         }
+
+
     }
 }
