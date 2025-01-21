@@ -26,7 +26,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            tripleBullets = !tripleBullets;
+        }
 
 
         if (transform.position.x > leftBound && transform.position.x < rightBound) {
