@@ -16,4 +16,8 @@ public class MainMenu : MonoBehaviour
     public void Homescreen(){
         SceneManager.LoadSceneAsync("Main Menu");
     }
+
+    public void PapaF(){
+        SceneManager.LoadSceneAsync("choosethisone");
+    }
 }
