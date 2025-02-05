@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,51 +6,102 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject bullet;
     private float horizontal;
-    public float speed = 5f;
-    public float rate; //bullet/second
+    public float rate; // bullets per second
     public float ms = 0f;
     private float leftBound = -3f;
     private float rightBound = 3f;
-    private bool tripleBullets = false; 
+    private bool tripleBullets = false;
 
-    // Start is called before the first frame update
+    private float acceleration = 10f;
+    private float deceleration = 20f;
+    private float maxVelocity = 10f;
+    private float currentVelocity = 0f;
+    private bool reversing = false; // If the key pressed is opposing motion
+
     void Start()
     {
-        tripleBullets=true;
-        rate = 1f; //could be changed
-
+        tripleBullets = true;
+        rate = 1f; 
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Q))
         {
             tripleBullets = !tripleBullets;
         }
 
+        float moveInput = Input.GetAxisRaw("Horizontal");
 
-        if (transform.position.x > leftBound && transform.position.x < rightBound) {
-            horizontal = Input.GetAxis("Horizontal");
-            horizontal *= speed * Time.deltaTime;
-            transform.Translate(new Vector3(horizontal, 0f, 0f));
-        } else if (transform.position.x <= leftBound)
+        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
         {
-            transform.position = new Vector3(leftBound+0.001f, transform.position.y, transform.position.z);
-
-        } else
-        {
-            transform.position = new Vector3(rightBound - 0.001f, transform.position.y, transform.position.z);
+            moveInput = 0;
         }
 
-        Debug.Log(ms);
+        // Detect if player is reversing motion
+        bool isChangingDirection = ((moveInput != 0) && (Mathf.Sign(moveInput) != Mathf.Sign(currentVelocity)) && (currentVelocity != 0));
+
+        if (isChangingDirection)
+        {
+            reversing = true;
+        }
+
+        if (reversing)
+        {
+            currentVelocity -= Mathf.Sign(currentVelocity) * deceleration * 2f * Time.deltaTime;
+
+            if (Mathf.Abs(currentVelocity) < 0.1f)
+            {
+                currentVelocity = 0f;
+                reversing = false;
+            } //just set velocity to 0 if it is slow enough
+        }
+        else
+        {
+            // Normal acceleration
+            if (moveInput != 0)
+            {
+                currentVelocity += moveInput * acceleration * Time.deltaTime;
+            }
+            else
+            {
+                // Normal deceleration when no input is given
+                if (currentVelocity != 0)
+                {
+                    currentVelocity -= Mathf.Sign(currentVelocity) * deceleration * Time.deltaTime;
+                }
+
+                // Stop when velocity gets very small
+                if (Mathf.Abs(currentVelocity) < 0.1f)
+                {
+                    currentVelocity = 0f;
+                }
+            }
+        }
+
+        // Returns value within the min max range so that it doesn't go over or under
+        currentVelocity = Mathf.Clamp(currentVelocity, -maxVelocity, maxVelocity);
+
+        // Apply movement
+        transform.position += new Vector3(currentVelocity * Time.deltaTime, 0, 0);
+
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, 
+            leftBound, rightBound), transform.position.y, 
+            transform.position.z
+            ); //checks if in bound
+
+        // Stop velociy when hit bound
+        if (transform.position.x <= leftBound || transform.position.x >= rightBound)
+        {
+            currentVelocity = 0f;
+        }
 
         ms += Time.deltaTime;
 
-        if (ms >= rate) {
-            // Vector3 spawnPosition = transform.position + Vector3.up * (transform.localScale.y + bullet.transform.localScale.y);
-            Vector3 spawnPosition = transform.position + Vector3.up * 1.5f; // temporary displacement to avoid bumping into plane. TODO: make bullet not collide with plane
+        if (ms >= rate)
+        {
+            Vector3 spawnPosition = transform.position + Vector3.up * 1.5f;
             Instantiate(bullet, spawnPosition, transform.rotation);
 
             if (tripleBullets)
@@ -59,23 +109,8 @@ public class PlayerController : MonoBehaviour
                 Instantiate(bullet, spawnPosition, Quaternion.Euler(0, 0, 45));
                 Instantiate(bullet, spawnPosition, Quaternion.Euler(0, 0, 315));
             }
-            ms = 0;
 
-            
-            
+            ms = 0;
         }
     }
-
-    void EnableTripleBullets()
-    {
-        tripleBullets = true;
-    }
-
-    void DisableTripleBullets()
-    {
-        tripleBullets = false;
-    }
-
-
-
 }
