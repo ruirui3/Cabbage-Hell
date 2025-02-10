@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MusicScript : MonoBehaviour
@@ -12,8 +13,12 @@ public class MusicScript : MonoBehaviour
     }
 
     private void Awake() {
-        DontDestroyOnLoad(transform.gameObject);
-        audioSource = GetComponent<AudioSource>();
+        GameObject[] musicObjects = GameObject.FindGameObjectsWithTag("Music");
+        if (musicObjects.Length > 1) {
+            Destroy(musicObjects[1]);
+        } 
+        DontDestroyOnLoad(musicObjects[0]);
+        audioSource = musicObjects[0].GetComponent<AudioSource>();
     }
 
     public void playMusic() {
