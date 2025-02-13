@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public GameObject bullet;
+    public float FIRING_DELAY_MUTIPLIER = 1f;
+    public float SPEED_MULTIPLIER = 1f;
     private float horizontal;
-    public float rate; // bullets per second
+    public float bulletFiringDelay; // seconds per bullets
     public float ms = 0f;
     private float leftBound = -3f;
     private float rightBound = 3f;
@@ -21,7 +23,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         tripleBullets = true;
-        rate = 1f; 
+        bulletFiringDelay = 1f; 
     }
 
     void Update()
@@ -83,7 +85,7 @@ public class PlayerController : MonoBehaviour
         currentVelocity = Mathf.Clamp(currentVelocity, -maxVelocity, maxVelocity);
 
         // Apply movement
-        transform.position += new Vector3(currentVelocity * Time.deltaTime, 0, 0);
+        transform.position += new Vector3(currentVelocity * Time.deltaTime, 0, 0) * SPEED_MULTIPLIER;
 
         transform.position = new Vector3(
             Mathf.Clamp(transform.position.x, 
@@ -99,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
         ms += Time.deltaTime;
 
-        if (ms >= rate)
+        if (ms >= bulletFiringDelay * FIRING_DELAY_MUTIPLIER)
         {
             Vector3 spawnPosition = transform.position + Vector3.up * 1.5f;
             Instantiate(bullet, spawnPosition, transform.rotation);
