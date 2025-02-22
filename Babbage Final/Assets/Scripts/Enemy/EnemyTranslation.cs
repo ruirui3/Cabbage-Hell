@@ -10,14 +10,18 @@ public class EnemyTranslation : MonoBehaviour
 
     bool isMoving;
     bool isInTornado;
-    public GameObject tornado;
-    public Transform tornadoTransform;
+    private GameObject tornado;
+    private Transform tornadoTransform;
+    private PlayerController playerController;
+    private BulletScript bulletScript;
+    public GameObject bulletPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         isMoving = true;
         isInTornado = false;
+        playerController = GameObject.Find("Cabbage Cart").GetComponent<PlayerController>();
         
     }
 
@@ -70,7 +74,7 @@ public class EnemyTranslation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         
-        if (other.gameObject.tag == "bullet") {
+        if (other.gameObject.tag == "bullet" || other.gameObject.tag == "CurlBullet") {
             
             gopoof();
         }
@@ -89,8 +93,6 @@ public class EnemyTranslation : MonoBehaviour
             {
                 Debug.LogError("ManageHealth component is missing on the Player!");
             }
-
-
 
             gopoof();
         }

@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageSFX: {fileID: 8300000, guid: 027002b66e704384a926c5f3b321f990, type: 3}
+  bulletPrefab: {fileID: 4906810771895717694, guid: 941a64d6b588d284e9d560aab75b1e96, type: 3}
 --- !u!61 &3904410037638849493
 BoxCollider2D:
   m_ObjectHideFlags: 0

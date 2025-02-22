@@ -117,8 +117,7 @@ public class PlayerController : MonoBehaviour
         }
         if (bulletIndex == 4) //curl
         {
-            Debug.Log("Currently attempting to run curl bullet. Not implemented. Please swap bullet type.");
-            ms = 0;
+            CurlBulletFunction();
         }
         if (bulletIndex == 5) //tornado
         {
@@ -149,6 +148,18 @@ public class PlayerController : MonoBehaviour
 
             ms = 0;
             Debug.Log("Currently running carrot bullet");
+        }
+    }
+
+    private void CurlBulletFunction()
+    {
+        if (ms >= bulletFiringDelay * FIRING_DELAY_MUTIPLIER)
+        {
+            Vector3 spawnPosition = transform.position + Vector3.up * 1.5f;
+            Instantiate(bullet, spawnPosition, transform.rotation);
+
+            ms = 0;
+            Debug.Log("Currently running curl bullet");
         }
     }
 
@@ -200,10 +211,12 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            
             // Normal acceleration
             if (moveInput != 0)
             {
-                currentVelocity += moveInput * acceleration * Time.deltaTime;
+                float accelerationBoost = (transform.position.x <= leftBound || transform.position.x >= rightBound) ? 1.5f : 1f;
+                currentVelocity += moveInput * acceleration * accelerationBoost * Time.deltaTime;
             }
             else
             {
@@ -234,7 +247,7 @@ public class PlayerController : MonoBehaviour
             ); //checks if in bound
 
         // Stop velociy when hit bound
-        if (transform.position.x <= leftBound || transform.position.x >= rightBound)
+        if ((transform.position.x <= leftBound && currentVelocity < 0) || (transform.position.x >= rightBound && currentVelocity > 0))
         {
             currentVelocity = 0f;
         }
