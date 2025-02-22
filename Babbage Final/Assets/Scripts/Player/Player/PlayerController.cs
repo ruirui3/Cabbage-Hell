@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         
         for (int i = 0; i < 6; i++)
         {
-            bulletQueue.Enqueue(i);  //Temporary for loop for enqueuing all of the bullet types
+            bulletQueue.Enqueue(i);  //Temporary for loop for enqueuing all of the bullet types assuming player has all types
         }
 
     }
@@ -49,6 +49,41 @@ public class PlayerController : MonoBehaviour
             SwitchBulletType();
         }
 
+    }
+
+    public void EnqueueBulletType(int bulletTypeIndex)
+    {
+
+        if (!bulletQueue.Contains(bulletTypeIndex))
+        {
+            bulletQueue.Enqueue(bulletTypeIndex);
+        } else
+        {
+            Debug.Log("Bullet already exists within the queue");
+        }
+
+    }
+
+    public int RemoveBulletType(int bulletIndexToBeRemoved) //not tested
+    {
+        int currentIndex = -1;
+        if (bulletQueue.Contains(bulletIndexToBeRemoved))
+        {
+            
+            while (bulletQueue.Contains(bulletIndexToBeRemoved))
+            {
+                currentIndex = bulletQueue.Dequeue();
+
+                if (currentIndex != bulletIndexToBeRemoved)
+                {
+                    bulletQueue.Enqueue(currentIndex);
+                }
+
+            }
+            
+        }
+
+        return currentIndex;
     }
 
     public void SwitchBulletType()
@@ -73,8 +108,7 @@ public class PlayerController : MonoBehaviour
         }
         if (bulletIndex == 2) //carrot
         {
-            Debug.Log("Currently attempting to run carrot bullet. Not implemented. Please swap bullet type.");
-            ms = 0;
+            CarrotBulletFunction();
         }
         if (bulletIndex == 3) //honey
         {
@@ -104,6 +138,23 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Currently running normal bullet");
         }
         
+    }
+
+    private void CarrotBulletFunction()
+    {
+        if (ms >= bulletFiringDelay * FIRING_DELAY_MUTIPLIER)
+        {
+            Vector3 spawnPosition = transform.position + Vector3.up * 1.5f;
+            Instantiate(bullet, spawnPosition, transform.rotation);
+
+            ms = 0;
+            Debug.Log("Currently running carrot bullet");
+        }
+    }
+
+    public int GetBulletType()
+    {
+        return bulletQueue.Peek();
     }
 
     private void TripleBulletFunction()

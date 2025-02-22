@@ -18,7 +18,7 @@ public class EnemyTranslation : MonoBehaviour
     {
         isMoving = true;
         isInTornado = false;
-        tornadoTransform = tornado.transform;
+        
     }
 
     // Update is called once per frame
