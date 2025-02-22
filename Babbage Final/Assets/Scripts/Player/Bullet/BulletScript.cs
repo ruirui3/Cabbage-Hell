@@ -36,7 +36,7 @@ public class BulletScript : MonoBehaviour
             isMoving = false;
             gopoof();
         }
-
+        
     }
     private bool notInScreen(){
         Vector3 viewportPosition = Camera.main.WorldToViewportPoint(transform.position); //set variable to cameras position

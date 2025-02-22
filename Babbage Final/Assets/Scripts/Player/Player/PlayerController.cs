@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public GameObject bullet;
+    
     public float FIRING_DELAY_MUTIPLIER = 1f;
     public float SPEED_MULTIPLIER = 1f;
     private float horizontal;

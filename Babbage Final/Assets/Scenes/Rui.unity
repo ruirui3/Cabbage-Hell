@@ -646,10 +646,14 @@ PrefabInstance:
       propertyPath: Enemy
       value: 
       objectReference: {fileID: 8851823624434618989, guid: f4079e4a5a44a4d45931ca91f9426238, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8706169221791772734, guid: c1982d5bc3305dd4387c99718903425b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5197003947273135484, guid: c1982d5bc3305dd4387c99718903425b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 448668615}
   m_SourcePrefab: {fileID: 100100000, guid: c1982d5bc3305dd4387c99718903425b, type: 3}
 --- !u!1 &314337084
 GameObject:
@@ -993,6 +997,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 405220703}
   m_CullTransparentMesh: 1
+--- !u!1 &448668611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5197003947273135484, guid: c1982d5bc3305dd4387c99718903425b, type: 3}
+  m_PrefabInstance: {fileID: 194297437}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &448668615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448668611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee86e61130e86ef49a183bfd9a958b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 8851823624434618989, guid: f4079e4a5a44a4d45931ca91f9426238, type: 3}
+  spawnCount: 0
 --- !u!1 &514867581
 GameObject:
   m_ObjectHideFlags: 0
@@ -2572,8 +2595,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 4906810771895717694, guid: 941a64d6b588d284e9d560aab75b1e96, type: 3}
-  speed: 5
-  rate: 5
+  FIRING_DELAY_MUTIPLIER: 1
+  SPEED_MULTIPLIER: 1
+  bulletFiringDelay: 0
   ms: 0
 --- !u!61 &2007282780
 BoxCollider2D:
