@@ -7,7 +7,7 @@ public class BulletScript : MonoBehaviour
     public ManageScore manager;
     public float speed;
     public bool isMoving = true;
-    private int pierceCount = 0;
+    private int pierceCount;
     public float maxPierce;
     public AudioClip explosionSfx;
     private int currentBulletType;
@@ -21,7 +21,7 @@ public class BulletScript : MonoBehaviour
         manager = canvas.transform.Find("Score").GetComponent<ManageScore>();
         playerController = GameObject.Find("Cabbage Cart").GetComponent<PlayerController>();
         currentBulletType = playerController.GetBulletType();
-        maxPierce = 2; //temporary
+        
         hitEnemies = new HashSet<GameObject>();
 
         //Different types of bullets can have different types of attributes?
@@ -36,6 +36,8 @@ public class BulletScript : MonoBehaviour
         if (currentBulletType == 2)
         {
             speed = 5f;
+            maxPierce = 2; //temporary
+            pierceCount = 0;
         }
         if (currentBulletType == 3)
         {
@@ -85,10 +87,6 @@ public class BulletScript : MonoBehaviour
 
     private void KillBullet()
     {
-        // Disable the GameObject - gives an error when playercontroller code tries to respawn it? 
-        //gameObject.SetActive(false);
-
-
         Destroy(gameObject);
     }
 
