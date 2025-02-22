@@ -9,9 +9,10 @@ public class PlayerController : MonoBehaviour
     
     public float FIRING_DELAY_MUTIPLIER = 1f; //could consider having multiple firing delay multiplier constants for each respective bullet types
     public float SPEED_MULTIPLIER = 1f;
-    private float horizontal;
+
     public float bulletFiringDelay; // seconds per bullets
     public float ms = 0f;
+
     private float leftBound = -3f;
     private float rightBound = 3f;
 
@@ -100,7 +101,9 @@ public class PlayerController : MonoBehaviour
             Instantiate(bullet, spawnPosition, transform.rotation);
 
             ms = 0;
+            Debug.Log("Currently running normal bullet");
         }
+        
     }
 
     private void TripleBulletFunction()
@@ -113,6 +116,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(bullet, spawnPosition, Quaternion.Euler(0, 0, 315));
 
             ms = 0;
+            Debug.Log("Currently running triple bullet");
         }
     }
 
