@@ -1558,7 +1558,7 @@ GameObject:
   - component: {fileID: 1800109270}
   - component: {fileID: 1800109269}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: option3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1603,7 +1603,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: choosethisone
+  m_text: dontpickme
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
