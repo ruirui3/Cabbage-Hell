@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 232572202}
   - component: {fileID: 232572201}
   - component: {fileID: 232572200}
+  - component: {fileID: 232572203}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -216,6 +217,18 @@ Transform:
   - {fileID: 1570254225}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &232572203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232572199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a15ec34ff5746d88b29e9d37b3cc20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &268104558
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +241,7 @@ GameObject:
   - component: {fileID: 268104561}
   - component: {fileID: 268104560}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: scoreText4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -516,7 +529,7 @@ GameObject:
   - component: {fileID: 1054079220}
   - component: {fileID: 1054079219}
   m_Layer: 0
-  m_Name: Text (TMP) (2)
+  m_Name: scoreText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -784,7 +797,7 @@ GameObject:
   - component: {fileID: 1289166555}
   - component: {fileID: 1289166554}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: scoreText3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -918,7 +931,7 @@ GameObject:
   - component: {fileID: 1376776051}
   - component: {fileID: 1376776050}
   m_Layer: 0
-  m_Name: Text (TMP) (1)
+  m_Name: scoreText5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1265,7 +1278,7 @@ GameObject:
   - component: {fileID: 1512611287}
   - component: {fileID: 1512611286}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: scoreText2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1527,7 +1540,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1835330936}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 232572203}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: Homescreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1835330936
 MonoBehaviour:
   m_ObjectHideFlags: 0
