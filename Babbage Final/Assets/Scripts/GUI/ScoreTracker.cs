@@ -14,21 +14,8 @@ public class ScoreTracker : MonoBehaviour
 
     }
 
-    void SaveScore(int score)
-    {
-    // Save score with a unique key (e.g., "Score1", "Score2", etc.)
-    int highScore = PlayerPrefs.GetInt("HighScore", 0);
-    
-    if (score > highScore)
-    {
-        PlayerPrefs.SetInt("HighScore", score);
-        PlayerPrefs.Save();
-    }
-    }
-
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         
     }
 

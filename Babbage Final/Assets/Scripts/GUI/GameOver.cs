@@ -7,6 +7,7 @@ public class GameOver : MonoBehaviour
 {
     public GameObject img;
     public ManageHealth player;
+    public ManageScore players;
 
     void Start() {
         img.SetActive(false);
@@ -17,12 +18,14 @@ public class GameOver : MonoBehaviour
     //public void End(){
     //    img.SetActive(true);
     //}
+
     void Update(){
         if (player.healthAmount <= 0){
             img.SetActive(true);
+            //SaveScore(players.getScore());
         }
 
 
     }
-    
+
 }
