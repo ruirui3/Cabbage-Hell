@@ -157,5 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initSpeed: 2
   bottomBound: -5
+  walkBound: -1
   damageSFX: {fileID: 8300000, guid: 027002b66e704384a926c5f3b321f990, type: 3}
   hp: 1
+  animator: {fileID: 6710495811888308580}

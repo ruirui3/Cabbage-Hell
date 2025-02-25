@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Porcupe : MonoBehaviour
+public class PorcupineTranslation : MonoBehaviour
 {
     public float initSpeed = 2f;
     public float bottomBound = -5f;
+    public float walkBound = -1f;
     public AudioClip damageSFX;
     public int hp = 1;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +20,11 @@ public class Porcupe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.down * Time.deltaTime * initSpeed);
+        if (transform.position.y >= walkBound) {
+            transform.Translate(Vector2.down * Time.deltaTime * initSpeed);
+        } else {
+            animator.SetBool("isShooting", true);
+        }
 
         if (transform.position.y < bottomBound || hp <= 0)
         {
