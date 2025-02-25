@@ -20,4 +20,8 @@ public class MainMenu : MonoBehaviour
     public void PapaF(){
         SceneManager.LoadSceneAsync("choosethisone");
     }
+
+    public void Scoreboard(){
+        SceneManager.LoadSceneAsync("Scoreboard");
+    }
 }
