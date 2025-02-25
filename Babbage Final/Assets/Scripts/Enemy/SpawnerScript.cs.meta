@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 01bbabf1c6675443bbcbf01a058a3004
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - turtle: {fileID: 1734988937037452433, guid: e48c5b7ff88174010930d90692d0d98e, type: 3}
+  - rabbit: {fileID: 8851823624434618989, guid: f4079e4a5a44a4d45931ca91f9426238, type: 3}
+  - porcupine: {fileID: 566668826834268299, guid: e3c0a50deb7e45948a23ac1385b8c25b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

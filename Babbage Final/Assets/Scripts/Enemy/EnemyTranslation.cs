@@ -15,6 +15,8 @@ public class EnemyTranslation : MonoBehaviour
     private PlayerController playerController;
     private BulletScript bulletScript;
     public GameObject bulletPrefab;
+    public float bottomBound = -5f;
+    //hp
 
     // Start is called before the first frame update
     void Start()
@@ -48,10 +50,9 @@ public class EnemyTranslation : MonoBehaviour
             transform.Translate(Vector2.down * Time.deltaTime * speed);
         }
 
-        if (notInScreen())
+        if (transform.position.y < bottomBound)
         {
-            
-            gopoof();
+            GoPoof();
         }
     }
 
@@ -62,21 +63,17 @@ public class EnemyTranslation : MonoBehaviour
         return viewportPosition.y > 1; //1 is top of the screen
     }
 
-    private void gopoof() {
-        // Disable the GameObject - gives an error when playercontroller code tries to respawn it? 
-        //gameObject.SetActive(false);
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-        {
-            gameObject.SetActive(false); // delete the bullet ?
-        }
+    private void GoPoof() {
+        
+        Destroy(gameObject);
+
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         
         if (other.gameObject.tag == "bullet" || other.gameObject.tag == "CurlBullet") {
             
-            gopoof();
+            GoPoof();
         }
         if (other.gameObject.tag == "Player")
         {
@@ -94,7 +91,7 @@ public class EnemyTranslation : MonoBehaviour
                 Debug.LogError("ManageHealth component is missing on the Player!");
             }
 
-            gopoof();
+            GoPoof();
         }
     }
 
