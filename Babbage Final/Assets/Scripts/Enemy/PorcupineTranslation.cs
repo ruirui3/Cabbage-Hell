@@ -6,7 +6,7 @@ public class PorcupineTranslation : MonoBehaviour
 {
     public float initSpeed = 2f;
     public float bottomBound = -5f;
-    public float walkBound = -1f;
+    public float walkBound = 10f;
     public AudioClip damageSFX;
     public int hp = 1;
     public Animator animator;
