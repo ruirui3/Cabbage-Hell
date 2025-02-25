@@ -1,22 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class ScoreboardManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public TextMeshProUGUI[] scoreTexts; // Assign in Inspector
+
     void Start()
     {
-        
+        LoadScores();
     }
-    
-    
 
-
-    // Update is called once per frame
-    void Update()
+    void LoadScores()
     {
-        
+        for (int i = 0; i < scoreTexts.Length; i++)
+        {
+            int score = PlayerPrefs.GetInt("Score" + i, 0);
+            scoreTexts[i].text = (i + 1) + ". " + score;
+        }
     }
 }
