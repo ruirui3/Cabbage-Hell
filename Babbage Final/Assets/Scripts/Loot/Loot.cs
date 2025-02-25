@@ -2,16 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "NewLoot", menuName = "Loot System/Loot Item")]
 public class Loot : ScriptableObject
 {
     public Sprite lootSprite;
     public string lootName;
-    public int dropChance;
-
-    public Loot(string lootName, int dropChance)
-    {
-        this.lootName = lootName;
-        this.dropChance = dropChance;
-    }
+    [Range(0, 100)] public int dropChance; // Drop rate in %
 }
