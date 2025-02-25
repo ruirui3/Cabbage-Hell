@@ -142,7 +142,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1
 --- !u!114 &-7524602841185614578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,4 +158,4 @@ MonoBehaviour:
   initSpeed: 2
   bottomBound: -5
   damageSFX: {fileID: 8300000, guid: 027002b66e704384a926c5f3b321f990, type: 3}
-  hp: 2
+  hp: 1
