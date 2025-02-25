@@ -15,7 +15,7 @@ public class ScoreboardManager : MonoBehaviour
         for (int i = 0; i < scoreTexts.Length; i++)
         {
             int score = PlayerPrefs.GetInt("Score" + i, 0);
-            scoreTexts[i].text = (i + 1) + ". " + score;
+            scoreTexts[i].text = score;
         }
     }
 }
