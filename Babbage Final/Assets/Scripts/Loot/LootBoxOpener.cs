@@ -54,7 +54,19 @@ public class LootBoxOpener : MonoBehaviour
     }
 
     void ApplyLootAndClose()
-    {
+    {   
+        var playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        switch (selectedLoot.lootName)
+        {
+            case "Firing Rate Boost":
+                if (playerController.FIRING_DELAY_MUTIPLIER > 0.5) {
+                    playerController.FIRING_DELAY_MUTIPLIER -= 0.1f;
+                }
+                break;
+            case "Movement Speed Boost":
+                playerController.SPEED_MULTIPLIER += 0.1f;
+                break;
+        }
         lootUI.HideLoot();
         state = 0;
     }

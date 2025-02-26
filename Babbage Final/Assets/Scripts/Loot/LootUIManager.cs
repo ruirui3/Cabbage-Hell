@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class LootUIManager : MonoBehaviour
 {
-    public Loot loot;
     public TMP_Text lootText;      // Assign in Inspector
     public Image lootImage;    // Assign in Inspector
     public GameObject lootPanel; // The UI panel
