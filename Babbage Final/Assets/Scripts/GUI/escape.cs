@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class escape : MonoBehaviour
 {
+    public ScoreTracker players;
     //GameOver thing;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class escape : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Escape)){
             Debug.Log("Escape key was released");
             //thing.End();
+            ScoreManager.Instance.SaveScore(players.GetScore());
             SceneManager.LoadSceneAsync("Main Menu");
         }
     }

@@ -18,28 +18,34 @@ public class ScoreManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
+    public void SaveScore(int score){
+        List<int> scores = GetHighScores(); //creates list with 0 as all high score or past scores on list
+        scores.Add(score); //add in the score
+        scores.Sort((a, b) => b.CompareTo(a));
 
-    public void SaveScore(int newScore)
-    {
+        if (scores.Count > 5) {
+            scores.RemoveAt(5);
+        }
+
+        for (int i = 0; i < scores.Count; i++) {
+            PlayerPrefs.SetInt("Score" + i, scores[i]);
+            Debug.Log("Saving Score " + i + ": " + scores[i]);
+        }
+
+        PlayerPrefs.Save(); 
+        Debug.Log("Scores Saved!");
+    }  
+
+    public List<int> GetHighScores() {   
         List<int> scores = new List<int>();
 
-        // Load existing scores
-        for (int i = 0; i < 5; i++)
-        {
-            scores.Add(PlayerPrefs.GetInt("Score" + i, 0));
+        for (int i = 0; i < 5; i++) {
+            int score = PlayerPrefs.GetInt("Score" + i, 0); // Default 0 if no score found
+            scores.Add(score);
+
         }
-
-        // Add new score, sort in descending order, and keep top 5
-        scores.Add(newScore);
-        scores.Sort((a, b) => b.CompareTo(a));
-        scores = scores.Take(5).ToList(); // Keep only the top 5
-
-        // Save back to PlayerPrefs
-        for (int i = 0; i < scores.Count; i++)
-        {
-            PlayerPrefs.SetInt("Score" + i, scores[i]);
-        }
-
-        PlayerPrefs.Save();
+        return scores;
     }
+
 }

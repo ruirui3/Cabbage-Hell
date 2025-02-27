@@ -7,7 +7,7 @@ TagManager:
   - bullet
   - Enemy
   - Music
-  - CurlBullet
+  - ScoreText
   layers:
   - Default
   - TransparentFX
