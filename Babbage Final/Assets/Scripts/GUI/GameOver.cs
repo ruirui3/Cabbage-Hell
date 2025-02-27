@@ -23,7 +23,7 @@ public class GameOver : MonoBehaviour
         if (player.healthAmount <= 0){
             img.SetActive(true);
             //save the score tracked at the end of the game
-            ScoreManager.Instances.SaveScore(players.GetScore());
+            ScoreManager.Instance.SaveScore(players.GetScore());
 
         }
 

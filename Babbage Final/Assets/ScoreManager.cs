@@ -4,7 +4,7 @@ using System.Linq;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager Instances;
+    public static ScoreManager Instance;
 
     private void Awake()
     {
