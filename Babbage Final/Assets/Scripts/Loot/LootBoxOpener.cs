@@ -16,7 +16,7 @@ public class LootBoxOpener : MonoBehaviour
         switch (state)
         {
             case 0: // Waiting for user click
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetKeyDown(KeyCode.Space))  //Input.GetMouseButtonDown(0), temp space
                 {
                     OpenBox();
                 }
@@ -30,7 +30,7 @@ public class LootBoxOpener : MonoBehaviour
                 break;
 
             case 2: // Loot shown, wait for user to acknowledge
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetKeyDown(KeyCode.Space))  //Input.GetMouseButtonDown(0), temp space
                 {
                     ApplyLootAndClose();
                 }
