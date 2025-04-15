@@ -24,17 +24,15 @@ public class PlayerController : MonoBehaviour
 
     private int currentBulletType;
     private Queue<int> bulletQueue;
+    private float[] bulletCount = {Mathf.Infinity, 5f, 0f, 0f, 0f, 0f};
 
     void Start()
     {
         bulletFiringDelay = 1f;
         bulletQueue = new Queue<int>(); //need some way to reference bullets in inventory. Current bullet types: normal (0) triple (1) carrot (2) honey (3) curl (4) tornado (5)     - mostly in terms of progression of implementation
         
-        for (int i = 0; i < 6; i++)
-        {
-            bulletQueue.Enqueue(i);  //Temporary for loop for enqueuing all of the bullet types assuming player has all types
-        }
-
+        EnqueueBulletType(0);
+        EnqueueBulletType(1);
     }
 
     void Update()
@@ -97,70 +95,69 @@ public class PlayerController : MonoBehaviour
     private void SeekAndRunBulletType(int bulletIndex)
     {
         ms += Time.deltaTime;
+        if (ms < bulletFiringDelay * FIRING_DELAY_MUTIPLIER) {
+            return;
+        }
+        ms = 0;
 
-        if (bulletIndex == 0) //normal
+        if (bulletIndex == 0 && bulletCount[bulletIndex] > 0) //normal
         {
             NormalBulletFunction();
         }
-        if (bulletIndex == 1) //triple
+        if (bulletIndex == 1 && bulletCount[bulletIndex] > 0) //triple
         {
             TripleBulletFunction();
         }
-        if (bulletIndex == 2) //carrot
+        if (bulletIndex == 2 && bulletCount[bulletIndex] > 0) //carrot
         {
             CarrotBulletFunction();
         }
-        if (bulletIndex == 3) //honey
+        if (bulletIndex == 3 && bulletCount[bulletIndex] > 0) //honey
         {
             Debug.Log("Currently attempting to run honey bullet. Not implemented. Please swap bullet type.");
             ms = 0;
         }
-        if (bulletIndex == 4) //curl
+        if (bulletIndex == 4 && bulletCount[bulletIndex] > 0) //curl
         {
             CurlBulletFunction();
         }
-        if (bulletIndex == 5) //tornado
+        if (bulletIndex == 5 && bulletCount[bulletIndex] > 0) //tornado
         {
             Debug.Log("Currently attempting to run tornado bullet. Not implemented. Please swap bullet type.");
             ms = 0;
+        }
+
+        bulletCount[bulletIndex]--;
+
+        // if bullet type is empty, switch to next
+        if (bulletCount[bulletIndex] <= 0) {
+            bulletQueue.Dequeue(); // should always be at least one remaining
         }
     }
 
     private void NormalBulletFunction()
     {
-        if (ms >= bulletFiringDelay * FIRING_DELAY_MUTIPLIER)
-        {
             Vector3 spawnPosition = transform.position + Vector3.up * 1.5f;
             Instantiate(bullet, spawnPosition, transform.rotation);
 
-            ms = 0;
             Debug.Log("Currently running normal bullet");
-        }
         
     }
 
     private void CarrotBulletFunction()
     {
-        if (ms >= bulletFiringDelay * FIRING_DELAY_MUTIPLIER)
-        {
             Vector3 spawnPosition = transform.position + Vector3.up * 1.5f;
             Instantiate(bullet, spawnPosition, transform.rotation);
 
-            ms = 0;
             Debug.Log("Currently running carrot bullet");
-        }
     }
 
     private void CurlBulletFunction()
     {
-        if (ms >= bulletFiringDelay * FIRING_DELAY_MUTIPLIER)
-        {
             Vector3 spawnPosition = transform.position + Vector3.up * 1.5f;
             Instantiate(bullet, spawnPosition, transform.rotation);
 
-            ms = 0;
             Debug.Log("Currently running curl bullet");
-        }
     }
 
     public int GetBulletType()
@@ -170,16 +167,12 @@ public class PlayerController : MonoBehaviour
 
     private void TripleBulletFunction()
     {
-        if (ms >= bulletFiringDelay * FIRING_DELAY_MUTIPLIER)
-        {
             Vector3 spawnPosition = transform.position + Vector3.up * 1.5f;
             Instantiate(bullet, spawnPosition, transform.rotation);
             Instantiate(bullet, spawnPosition, Quaternion.Euler(0, 0, 45));
             Instantiate(bullet, spawnPosition, Quaternion.Euler(0, 0, 315));
 
-            ms = 0;
             Debug.Log("Currently running triple bullet");
-        }
     }
 
     private void UpdatePosition()
