@@ -7,6 +7,8 @@ public class SpawnerScript : MonoBehaviour
     public GameObject turtle;
     public GameObject rabbit;
     public GameObject porcupine;
+    public GameObject indicator;
+    public GameObject deer;
     public int turtleDelayTime = 3;
     public double rabbitDelayTime = 1.5;
     public int porcupineDelayTime = 8;
