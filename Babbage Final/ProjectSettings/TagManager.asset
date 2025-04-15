@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Music
   - ScoreText
+  - Manager
   layers:
   - Default
   - TransparentFX
