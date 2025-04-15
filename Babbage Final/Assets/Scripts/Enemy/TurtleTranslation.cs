@@ -5,6 +5,8 @@ using UnityEngine;
 public class TurtleTranslation : MonoBehaviour
 {
     public GameObject moveTo;
+    public DropBulletScript bulletManager;
+
     public float initSpeed = 2f;
     public float rotatingSpeed = 1f;
     public float bottomBound = -5f;
@@ -18,23 +20,26 @@ public class TurtleTranslation : MonoBehaviour
     void Start()
     {
         moveTo = GameObject.FindWithTag("Player");
+        bulletManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<DropBulletScript>();
     }
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {    
         if (isRotating) {
             transform.Translate(targetSpeedDir * rotatingSpeed * Time.deltaTime);
             // transform.Rotate(Vector3.forward * rotationRate);
         } else {
             transform.Translate(Vector2.down * Time.deltaTime * initSpeed);
         }
-        
-        if (transform.position.y < bottomBound || hp <= 0)
+
+        if (hp <= 0) {
+            bulletManager.addBullet(1);
+            goPoof();
+        } else if (transform.position.y < bottomBound)
         {
             goPoof();
-        }
+        } 
         
         if (Mathf.Abs(transform.position.y - moveTo.transform.position.y) < rotationDistance && isRotating == false) {
             Vector2 targetSpeed = moveTo.transform.position - transform.position;

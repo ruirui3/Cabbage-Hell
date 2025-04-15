@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PorcupineTranslation : MonoBehaviour
-{
+{   
+    public DropBulletScript bulletManager;
+
     public float initSpeed = 2f;
     public float bottomBound = -5f;
     public float walkBound = 10f;
@@ -14,7 +16,7 @@ public class PorcupineTranslation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        bulletManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<DropBulletScript>();
     }
 
     // Update is called once per frame
@@ -25,8 +27,11 @@ public class PorcupineTranslation : MonoBehaviour
         } else {
             animator.SetBool("isShooting", true);
         }
-
-        if (transform.position.y < bottomBound || hp <= 0)
+        
+        if (hp <= 0) {
+            bulletManager.addBullet(4);
+            goPoof();
+        } else if (transform.position.y < bottomBound)
         {
             goPoof();
         }

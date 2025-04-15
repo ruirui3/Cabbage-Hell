@@ -49,6 +49,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void addBullet(int type, int amount) {
+        bulletCount[type] += (float) amount;
+        EnqueueBulletType(type);
+    }
+    
     public void EnqueueBulletType(int bulletTypeIndex)
     {
 

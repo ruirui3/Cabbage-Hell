@@ -7,6 +7,7 @@ public class EnemyTranslation : MonoBehaviour
     float speed = 4.5f;
     //float cameraYBound = -5f;
     public AudioClip damageSFX;
+    public DropBulletScript bulletManager;
 
     bool isMoving;
     bool isInTornado;
@@ -24,6 +25,7 @@ public class EnemyTranslation : MonoBehaviour
         isMoving = true;
         isInTornado = false;
         playerController = GameObject.Find("Cabbage Cart").GetComponent<PlayerController>();
+        bulletManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<DropBulletScript>();
         
     }
 
@@ -72,7 +74,7 @@ public class EnemyTranslation : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         
         if (other.gameObject.tag == "bullet" || other.gameObject.tag == "CurlBullet") {
-            
+            bulletManager.addBullet(2);
             GoPoof();
         }
         if (other.gameObject.tag == "Player")
