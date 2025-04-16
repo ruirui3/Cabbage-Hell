@@ -69,10 +69,10 @@ public class SpawnerScript : MonoBehaviour
 
     public void SpawnDeer()
     {
-        if (msPorcupine >= porcupineDelayTime)
+        if (msDeer >= deerDelayTime)
         {
-            Instantiate(indicator, new Vector2(0, 0), transform.rotation); //change turtle to enemy type
-            msPorcupine = 0;
+            Instantiate(deer, new Vector2(randX, setY), transform.rotation); //change turtle to enemy type
+            msDeer = 0;
         }
     }
 
