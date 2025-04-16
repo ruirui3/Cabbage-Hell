@@ -161,3 +161,5 @@ MonoBehaviour:
   damageSFX: {fileID: 8300000, guid: 027002b66e704384a926c5f3b321f990, type: 3}
   hp: 1
   animator: {fileID: 6710495811888308580}
+  porcShooting: 0
+  PorcBullet: {fileID: 2886260069418761735, guid: 0bb00163d85fe48309a33796ba498fb9, type: 3}

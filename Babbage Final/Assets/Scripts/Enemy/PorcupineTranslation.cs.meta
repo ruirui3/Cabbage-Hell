@@ -3,7 +3,10 @@ guid: f05dea8e4624c46ceb5e8ff2d889b190
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - damageSFX: {instanceID: 0}
+  - animator: {instanceID: 0}
+  - PorcBullet: {fileID: 2886260069418761735, guid: 0bb00163d85fe48309a33796ba498fb9, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

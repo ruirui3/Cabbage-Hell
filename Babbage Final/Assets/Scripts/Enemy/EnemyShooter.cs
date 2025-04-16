@@ -22,7 +22,7 @@ public class EnemyShooter : MonoBehaviour
         int count = 360/rate;
 
         if (mils%count == 0) {
-            // Vector3 spawnPosition = transform.position + Vector3.up * (transform.localScale.y + bullet.transform.localScale.y);
+            //Vector3 spawnPosition = transform.position + Vector3.up * (transform.localScale.y + bullet.transform.localScale.y);
             Vector3 spawnPosition = transform.position + Vector3.down  * 1.5f; // temporary displacement to avoid bumping into plane. TODO: make bullet not collide with plane
             //changed .up to .down so it should go downwards?
             Instantiate(EnemyBullet, spawnPosition, transform.rotation);
