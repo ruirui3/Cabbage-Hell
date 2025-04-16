@@ -60,11 +60,11 @@ public class IndicatorController : MonoBehaviour
         float bottomX = UnityEngine.Random.Range(bottomLeft.x, bottomRight.x);
         
         // Create start and end points
-        Vector2 startPoint = new Vector2(topX, topLeft.y);
-        Vector2 endPoint = new Vector2(bottomX, bottomLeft.y);
+        Vector2 start = new Vector2(topX, topLeft.y);
+        Vector2 end = new Vector2(bottomX, bottomLeft.y);
         
         // Calculate and return the direction vector
-        return (endPoint - startPoint).normalized;
+        return (end - start).normalized;
     }
 
 
