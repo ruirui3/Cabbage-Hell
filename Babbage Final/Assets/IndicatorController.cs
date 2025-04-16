@@ -79,7 +79,7 @@ public class IndicatorController : MonoBehaviour
         return (endPoint - startPoint);
     }
 
-    private void AlignIndicator(){
+    private void IndicatorAngle(){
         // Position the indicator at the start point
         transform.position = start;
         
