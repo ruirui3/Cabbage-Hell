@@ -87,9 +87,9 @@ public class IndicatorController : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         
         // Apply rotation
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.rotation = Quaternion.Euler(angle, 0, 0);
         
-        // Scale the indicator to match the path length
+        // scale the indicator to match the path length
         float pathLength = Vector2.Distance(start, end);
         Vector3 currentScale = transform.localScale;
         transform.localScale = new Vector3(currentScale.x, pathLength, currentScale.z);
@@ -105,5 +105,5 @@ public class IndicatorController : MonoBehaviour
     lineRenderer.SetPosition(1, end);
 
     Debug.Log($"New Vector - Start: {start}, End: {end}, Direction: {dir}");
-}
+    }
 }

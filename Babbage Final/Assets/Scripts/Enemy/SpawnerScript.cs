@@ -67,4 +67,13 @@ public class SpawnerScript : MonoBehaviour
         }
     }
 
+    public void SpawnDeer()
+    {
+        if (msPorcupine >= porcupineDelayTime)
+        {
+            Instantiate(indicator, new Vector2(0, 0), transform.rotation); //change turtle to enemy type
+            msPorcupine = 0;
+        }
+    }
+
 }
