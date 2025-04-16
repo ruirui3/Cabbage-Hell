@@ -23,13 +23,17 @@ public class IndicatorController : MonoBehaviour
         // Debug.Log($"random number: {randNum}");
 
             // Set up a LineRenderer to visualize the vector testing
-            lineRenderer = gameObject.AddComponent<LineRenderer>();
-            lineRenderer.startWidth = 0.1f;
-            lineRenderer.endWidth = 0.1f;
-            lineRenderer.positionCount = 2;
-            lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-            lineRenderer.startColor = Color.red;
-            lineRenderer.endColor = Color.yellow;
+            // lineRenderer = gameObject.AddComponent<LineRenderer>();
+            // lineRenderer.startWidth = 0.1f;
+            // lineRenderer.endWidth = 0.1f;
+            // lineRenderer.positionCount = 2;
+            // lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+            // lineRenderer.startColor = Color.red;
+            // lineRenderer.endColor = Color.yellow;
+
+            //set active to see sprite?
+
+
 
     }
 
@@ -44,6 +48,8 @@ public class IndicatorController : MonoBehaviour
             testTimer = 0f;
         }
     }
+
+    
 
     private Vector2 GenerateRandomTopToBottomVector() {
         // get the camera to convert screen coordinates to world coordinates
@@ -60,13 +66,28 @@ public class IndicatorController : MonoBehaviour
         float bottomX = UnityEngine.Random.Range(bottomLeft.x, bottomRight.x);
         
         // Create start and end points
-        Vector2 start = new Vector2(topX, topLeft.y);
-        Vector2 end = new Vector2(bottomX, bottomLeft.y);
+        Vector2 startPoint = new Vector2(topX, topLeft.y);
+        Vector2 endPoint = new Vector2(bottomX, bottomLeft.y);
         
         // Calculate and return the direction vector
-        return (end - start).normalized;
+        return (endPoint - startPoint).normalized;
     }
 
+    private void AlignIndicator(){
+        // Position the indicator at the start point
+        transform.position = start;
+        
+        // Calculate the angle to rotate based on the direction
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        
+        // Apply rotation
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+        
+        // Scale the indicator to match the path length
+        float pathLength = Vector2.Distance(start, end);
+        Vector3 currentScale = transform.localScale;
+        transform.localScale = new Vector3(currentScale.x, pathLength, currentScale.z);
+    }
 
     //vizualize and print vector dir to make sure randomization works
     private void GenerateAndVisualizeVector() {
