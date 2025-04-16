@@ -9,6 +9,10 @@ public class IndicatorController : MonoBehaviour
     private Vector2 end;
     private Vector2 dir;
     private float displayTime;
+    private float xmin = -3f;
+    private float xmax = 3f;
+    private float ymin = -4.85f;
+    private float ymax = 4.85f;
     
 
     //testing variables
@@ -18,6 +22,7 @@ public class IndicatorController : MonoBehaviour
 
     void Start()
     {
+        dir = GenerateRandVector();
         //random number testing
         // int randNum = Random.Range(-3,3);
         // Debug.Log($"random number: {randNum}");
@@ -33,7 +38,11 @@ public class IndicatorController : MonoBehaviour
 
             //set active to see sprite?
 
-
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        if (renderer != null)
+        {
+            renderer.enabled = true;
+        }
 
     }
 
@@ -51,33 +60,30 @@ public class IndicatorController : MonoBehaviour
 
     
 
-    private Vector2 GenerateRandomTopToBottomVector() {
+    private Vector2 GenerateRandVector() {
         // get the camera to convert screen coordinates to world coordinates
         Camera cam = Camera.main;
         
-        // Calculate world coordinates for top and bottom screen edges
-        Vector2 topLeft = cam.ScreenToWorldPoint(new Vector3(0, Screen.height, 0));
-        Vector2 topRight = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-        Vector2 bottomLeft = cam.ScreenToWorldPoint(new Vector3(0, 0, 0));
-        Vector2 bottomRight = cam.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
-        
-        // Get random x positions at top and bottom of screen
-        float topX = UnityEngine.Random.Range(topLeft.x, topRight.x);
-        float bottomX = UnityEngine.Random.Range(bottomLeft.x, bottomRight.x);
-        
-        // Create start and end points
-        Vector2 startPoint = new Vector2(topX, topLeft.y);
-        Vector2 endPoint = new Vector2(bottomX, bottomLeft.y);
+        //random horizontal spawn range
+        float randomX = Random.Range(xmin, xmax);
+    
+        //Fixed y range -> minx and miny are already defined
+        //return vectors
+        Vector2 startPoint = new Vector2(randomX, ymax);
+        Vector2 endPoint = new Vector2(randomX, ymin);
+        //set start point to start and end to end
+        start = startPoint;
+        end = endPoint;
         
         // Calculate and return the direction vector
-        return (endPoint - startPoint).normalized;
+        return (endPoint - startPoint);
     }
 
     private void AlignIndicator(){
         // Position the indicator at the start point
         transform.position = start;
         
-        // Calculate the angle to rotate based on the direction
+        // calculate angle to rotate based on the direction
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         
         // Apply rotation
@@ -92,7 +98,7 @@ public class IndicatorController : MonoBehaviour
     //vizualize and print vector dir to make sure randomization works
     private void GenerateAndVisualizeVector() {
     
-    dir = GenerateRandomTopToBottomVector();
+    dir = GenerateRandVector();
     
     // make linerenderer show path
     lineRenderer.SetPosition(0, start);
