@@ -12,6 +12,7 @@ public class SpawnerScript : MonoBehaviour
     public int turtleDelayTime = 3;
     public double rabbitDelayTime = 1.5;
     public int deerDelayTime = 4;
+    public int indicatorDelayTime = 3;
     public int porcupineDelayTime = 8;
     public float randXRange = 3.2f;
     public float randX;
@@ -20,6 +21,7 @@ public class SpawnerScript : MonoBehaviour
     private float msTurtle = 0f;
     private float msRabbit = 0f;
     private float msPorcupine = 0f;
+    private float msInd = 0f;
 
     private Vector2 start;
     private Vector2 end;
@@ -41,6 +43,7 @@ public class SpawnerScript : MonoBehaviour
         msRabbit += Time.deltaTime;
         msPorcupine += Time.deltaTime;
         msDeer += Time.deltaTime;
+        msInd += Time.deltaTime;
 
         SpawnTurtle();
         SpawnRabbit();
@@ -81,22 +84,23 @@ public class SpawnerScript : MonoBehaviour
 
     public void SpawnDeer()
     {
-        if (msDeer >= deerDelayTime - 0.5) {
+        if (msInd >= indicatorDelayTime) {
             // direction = GenerateRandVector();
             // RotateAmt();
             //instantiate indicator
-            
-            Instantiate(indicator, new Vector2(0, 0), transform.rotation); //change turtle to enemy type
-        }
-        if (msDeer >= deerDelayTime)
-        {
-            //get deer rotate same directoin as indicator
-            //Instantiate(deer, start, transform.rotation);
             float randX = Random.Range(xmin,xmax);
+            Instantiate(indicator, new Vector2(randX, 0), transform.rotation);
+            //get deer rotate same directoin as indicator
+            msInd = 0;
+             
+        }
+        if (msDeer >= deerDelayTime){
+            //Instantiate(deer, start, transform.rotation);
             Instantiate(deer, new Vector2(randX, setY), transform.rotation);
 
             msDeer = 0;
         }
+
     }
     // private Vector2 GenerateRandVector() {
         

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5439850851295348888}
   - component: {fileID: 6160531808751882314}
   - component: {fileID: 3169953292048227301}
+  - component: {fileID: -32217968205501199}
   m_Layer: 0
   m_Name: Deer
   m_TagString: Untagged
@@ -99,3 +100,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   bottomBound: -5
+--- !u!64 &-32217968205501199
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644389679355594400}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
