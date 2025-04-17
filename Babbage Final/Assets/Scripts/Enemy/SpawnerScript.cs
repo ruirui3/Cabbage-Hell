@@ -48,7 +48,8 @@ public class SpawnerScript : MonoBehaviour
         SpawnTurtle();
         SpawnRabbit();
         SpawnPorcupine();
-        SpawnDeer();
+        //SpawnDeer();
+        SpawnInd();
     }
 
     public void SpawnTurtle()
@@ -82,24 +83,27 @@ public class SpawnerScript : MonoBehaviour
     }
 
 
-    public void SpawnDeer()
-    {
+    public void SpawnInd() {
         if (msInd >= indicatorDelayTime) {
             // direction = GenerateRandVector();
             // RotateAmt();
             //instantiate indicator
             float randX = Random.Range(xmin,xmax);
-            float setX = randX;
             Destroy(Instantiate(indicator, new Vector2(randX, 0), transform.rotation),1);
             msInd = -1;
+            SpawnDeer(randX);
+        }
+    }
+
+    public void SpawnDeer(float setX)
+    {
+        
             if (msDeer >= deerDelayTime){
             //Instantiate(deer, start, transform.rotation);
             Instantiate(deer, new Vector2(setX, setY), transform.rotation);
 
             msDeer = 0;
             }
-            
-        }
 
 
     }
