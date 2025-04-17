@@ -89,17 +89,20 @@ public class SpawnerScript : MonoBehaviour
             // RotateAmt();
             //instantiate indicator
             float randX = Random.Range(xmin,xmax);
+            float setX = randX;
             Destroy(Instantiate(indicator, new Vector2(randX, 0), transform.rotation),1);
-            //get deer rotate same directoin as indicator
             msInd = -1;
-            
-        }
-        if (msDeer >= deerDelayTime){
+            if (msDeer >= deerDelayTime){
             //Instantiate(deer, start, transform.rotation);
-            Instantiate(deer, new Vector2(randX, setY), transform.rotation);
+            Instantiate(deer, new Vector2(setX, setY), transform.rotation);
 
             msDeer = 0;
+            
+
         }
+            
+        }
+
 
     }
     // private Vector2 GenerateRandVector() {
