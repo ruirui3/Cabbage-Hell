@@ -1364,6 +1364,7 @@ GameObject:
   - component: {fileID: 876750748}
   - component: {fileID: 876750747}
   - component: {fileID: 876750746}
+  - component: {fileID: 876750749}
   m_Layer: 0
   m_Name: line indicator
   m_TagString: Untagged
@@ -1450,6 +1451,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &876750749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876750745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952e8c5ec2db64c9ebc44a23f685d2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &882313675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,6 +2141,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
+      propertyPath: deer
+      value: 
+      objectReference: {fileID: 644389679355594400, guid: 28c5a539fb5f74cf4aaa67219affb023, type: 3}
+    - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
       propertyPath: rabbit
       value: 
       objectReference: {fileID: 8851823624434618989, guid: f4079e4a5a44a4d45931ca91f9426238, type: 3}
@@ -2135,6 +2152,10 @@ PrefabInstance:
       propertyPath: delayTime
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
+      propertyPath: indicator
+      value: 
+      objectReference: {fileID: 7254012300996053081, guid: 0661368b77e844f7ea9b5ed23fa12464, type: 3}
     - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
       propertyPath: porcupine
       value: 
