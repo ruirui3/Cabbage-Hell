@@ -2052,7 +2052,7 @@ PrefabInstance:
       objectReference: {fileID: 566668826834268299, guid: e3c0a50deb7e45948a23ac1385b8c25b, type: 3}
     - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
       propertyPath: deerDelayTime
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

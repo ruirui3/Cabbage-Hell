@@ -81,13 +81,15 @@ public class SpawnerScript : MonoBehaviour
 
     public void SpawnDeer()
     {
+        if (msDeer >= deerDelayTime - 1) {
+            // direction = GenerateRandVector();
+            // RotateAmt();
+            //instantiate indicator
+            Instantiate(indicator, new Vector2(0, 0), transform.rotation); //change turtle to enemy type
+        }
         if (msDeer >= deerDelayTime)
         {
-            //direction = GenerateRandVector();
-            //RotateAmt();
-            
-            //instantiate indicator
-            //Instantiate(indicator, new Vector2(0, 0), transform.rotation); //change turtle to enemy type
+
             
             //get deer rotate same directoin as indicator
             //Instantiate(deer, start, transform.rotation);
@@ -97,7 +99,7 @@ public class SpawnerScript : MonoBehaviour
             msDeer = 0;
         }
     }
-        //     private Vector2 GenerateRandVector() {
+    // private Vector2 GenerateRandVector() {
         
     //     //random horizontal spawn range
     //     float randomX = Random.Range(xmin, xmax);
@@ -105,7 +107,7 @@ public class SpawnerScript : MonoBehaviour
     //     //Fixed y range -> minx and miny are already defined
     //     //return vectors
     //     Vector2 startPoint = new Vector2(randomX, setY);
-    //     Vector2 endPoint = new Vector2(randomX, ymin);
+    //     Vector2 endPoint = new Vector2(randomX, -setY);
     //     //set start point to start and end to end
     //     start = startPoint;
     //     end = endPoint;
