@@ -6,6 +6,7 @@ public class PorcBulletScript : MonoBehaviour
 {
     public float speed = 50f;
     public float bottomBound = -5f;
+    public AudioClip damageSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,21 @@ public class PorcBulletScript : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D Other) {
-        if (Other.gameObject.tag == "Player") {
+        if (Other.gameObject.tag == "Player")
+        {
+            Debug.Log("COLLISION");
+            ManageHealth health = Other.gameObject.GetComponentInChildren<ManageHealth>();
+            
+            if (health != null)
+            {
+                health.TakeDamage(4f);
+                AudioSource.PlayClipAtPoint(damageSFX, transform.position);
+                
+            }
+            else
+            {
+                Debug.LogError("ManageHealth component is missing on the Player!");
+            }
             goPoof();
         }
     }

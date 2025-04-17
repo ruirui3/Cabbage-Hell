@@ -57,7 +57,6 @@ public class TurtleTranslation : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         
         if (other.gameObject.tag == "bullet") {
-            
             hp--;
         }
         if (other.gameObject.tag == "Player")

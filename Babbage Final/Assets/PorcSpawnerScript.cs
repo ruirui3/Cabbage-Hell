@@ -17,7 +17,6 @@ public class PorcSpawnerScript : MonoBehaviour
     void Update()
     {
         if (Time.time % 2 == 0) {
-            //Vector3 spawnPosition = transform.position + Vector3.down * startingSpeed;
             Instantiate(PorcBullet, transform.position, transform.rotation);
         }
     }

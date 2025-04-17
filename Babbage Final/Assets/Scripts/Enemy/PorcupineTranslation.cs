@@ -27,8 +27,6 @@ public class PorcupineTranslation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-
         if (transform.position.y >= walkBound) {
             transform.Translate(Vector2.down * Time.deltaTime * initSpeed);
         } else {
@@ -43,6 +41,8 @@ public class PorcupineTranslation : MonoBehaviour
         {
             goPoof();
         }
+
+        timer += Time.deltaTime;
 
         //Porcupine bullets
         if (porcShooting) {
@@ -61,24 +61,8 @@ public class PorcupineTranslation : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        
         if (other.gameObject.tag == "bullet") {
             hp--;
-        }
-        if (other.gameObject.tag == "Player")
-        {
-            ManageHealth health = other.gameObject.GetComponentInChildren<ManageHealth>();
-            
-            if (health != null)
-            {
-                health.TakeDamage(4f);
-                AudioSource.PlayClipAtPoint(damageSFX, transform.position);
-            }
-            else
-            {
-                Debug.LogError("ManageHealth component is missing on the Player!");
-            }
-            goPoof();
         }
     }
 }
