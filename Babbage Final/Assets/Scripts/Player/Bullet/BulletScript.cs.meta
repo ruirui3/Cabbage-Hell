@@ -3,7 +3,10 @@ guid: 648b08c4cfa9c47e48e3e481d7dd68e7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - manager: {instanceID: 0}
+  - explosionSfx: {fileID: 8300000, guid: 52b461af25c20e14088317e9bd53651e, type: 3}
+  - playerController: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

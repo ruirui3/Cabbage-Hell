@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public GameObject bullet;
+    public AudioClip normalShot, tripleShot, carrotShot, curlShot;
     
     public float FIRING_DELAY_MUTIPLIER = 1f; //could consider having multiple firing delay multiplier constants for each respective bullet types
     public float SPEED_MULTIPLIER = 1f;
@@ -144,6 +145,7 @@ public class PlayerController : MonoBehaviour
     {
             Vector3 spawnPosition = transform.position + Vector3.up * 1.5f;
             Instantiate(bullet, spawnPosition, transform.rotation);
+            AudioSource.PlayClipAtPoint(normalShot, transform.position);
 
             Debug.Log("Currently running normal bullet");
         
@@ -153,6 +155,7 @@ public class PlayerController : MonoBehaviour
     {
             Vector3 spawnPosition = transform.position + Vector3.up * 1.5f;
             Instantiate(bullet, spawnPosition, transform.rotation);
+            AudioSource.PlayClipAtPoint(carrotShot, transform.position);
 
             Debug.Log("Currently running carrot bullet");
     }
@@ -161,6 +164,7 @@ public class PlayerController : MonoBehaviour
     {
             Vector3 spawnPosition = transform.position + Vector3.up * 1.5f;
             Instantiate(bullet, spawnPosition, transform.rotation);
+            AudioSource.PlayClipAtPoint(curlShot, transform.position);
 
             Debug.Log("Currently running curl bullet");
     }
@@ -176,6 +180,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(bullet, spawnPosition, transform.rotation);
             Instantiate(bullet, spawnPosition, Quaternion.Euler(0, 0, 45));
             Instantiate(bullet, spawnPosition, Quaternion.Euler(0, 0, 315));
+            AudioSource.PlayClipAtPoint(tripleShot, transform.position);
 
             Debug.Log("Currently running triple bullet");
     }

@@ -1661,6 +1661,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 4906810771895717694, guid: 941a64d6b588d284e9d560aab75b1e96, type: 3}
+  normalShot: {fileID: 8300000, guid: 9779ad38454a1b24aa8159821893bf63, type: 3}
+  tripleShot: {fileID: 8300000, guid: 9bbe7ede0d54d8d4f97750e6cd690f8b, type: 3}
+  carrotShot: {fileID: 8300000, guid: a4559d610c230e64fbafc8b1451f43b7, type: 3}
+  curlShot: {fileID: 8300000, guid: 89672968fb16c3f4ebb1c4d6bf42d396, type: 3}
   FIRING_DELAY_MUTIPLIER: 1
   SPEED_MULTIPLIER: 1
   bulletFiringDelay: 0
