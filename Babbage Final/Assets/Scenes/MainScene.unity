@@ -2037,7 +2037,7 @@ PrefabInstance:
     - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
       propertyPath: deer
       value: 
-      objectReference: {fileID: 644389679355594400, guid: 28c5a539fb5f74cf4aaa67219affb023, type: 3}
+      objectReference: {fileID: 4076984660449591408, guid: ff20087afdad04f8bb08f22b9d5adf48, type: 3}
     - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
       propertyPath: rabbit
       value: 

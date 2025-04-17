@@ -25,8 +25,8 @@ public class SpawnerScript : MonoBehaviour
     private Vector2 end;
     private Vector2 direction;
 
-    private float xmin = -3f;
-    private float xmax = 3f;
+    private float xmin = -2f;
+    private float xmax = 2f;
     //private float ymin = -4.85f;
     // Start is called before the first frame update
     void Start()
@@ -81,16 +81,15 @@ public class SpawnerScript : MonoBehaviour
 
     public void SpawnDeer()
     {
-        if (msDeer >= deerDelayTime - 1) {
+        if (msDeer >= deerDelayTime - 0.5) {
             // direction = GenerateRandVector();
             // RotateAmt();
             //instantiate indicator
+            
             Instantiate(indicator, new Vector2(0, 0), transform.rotation); //change turtle to enemy type
         }
         if (msDeer >= deerDelayTime)
         {
-
-            
             //get deer rotate same directoin as indicator
             //Instantiate(deer, start, transform.rotation);
             float randX = Random.Range(xmin,xmax);
