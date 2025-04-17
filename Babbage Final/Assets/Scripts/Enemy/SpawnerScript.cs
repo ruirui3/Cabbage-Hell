@@ -89,10 +89,10 @@ public class SpawnerScript : MonoBehaviour
             // RotateAmt();
             //instantiate indicator
             float randX = Random.Range(xmin,xmax);
-            Instantiate(indicator, new Vector2(randX, 0), transform.rotation);
+            Destroy(Instantiate(indicator, new Vector2(randX, 0), transform.rotation),1);
             //get deer rotate same directoin as indicator
-            msInd = 0;
-             
+            msInd = -1;
+            
         }
         if (msDeer >= deerDelayTime){
             //Instantiate(deer, start, transform.rotation);
