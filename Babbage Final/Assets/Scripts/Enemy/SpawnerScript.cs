@@ -91,7 +91,7 @@ public class SpawnerScript : MonoBehaviour
             
             //get deer rotate same directoin as indicator
             //Instantiate(deer, start, transform.rotation);
-            float randX = Random.Range(-randXRange, randXRange);
+            float randX = Random.Range(xmin,xmax);
             Instantiate(deer, new Vector2(randX, setY), transform.rotation);
 
             msDeer = 0;
