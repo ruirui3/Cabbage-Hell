@@ -97,9 +97,7 @@ public class SpawnerScript : MonoBehaviour
             Instantiate(deer, new Vector2(setX, setY), transform.rotation);
 
             msDeer = 0;
-            
-
-        }
+            }
             
         }
 
