@@ -27,6 +27,11 @@ public class PlayerController : MonoBehaviour
     private Queue<int> bulletQueue;
     private float[] bulletCount = {Mathf.Infinity, 5f, 0f, 0f, 0f, 0f};
 
+    public AudioClip bulletSwitch;
+
+
+
+
     void Start()
     {
         bulletFiringDelay = 1f;
@@ -45,9 +50,27 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            AudioSource.PlayClipAtPoint(bulletSwitch, transform.position);
             SwitchBulletType();
+
         }
 
+    }
+
+    public int PeekFirstBullet()
+    {
+        return bulletQueue.Peek();
+    }
+
+    public int PeekSecondBullet()
+    {
+        if (bulletQueue.Count < 2)
+        {
+            Debug.LogWarning("Not enough bullets in queue to peek the second one.");
+            return -1; //no bullet
+        }
+
+        return bulletQueue.ToArray()[1];
     }
 
     public void addBullet(int type, int amount) {
