@@ -9,11 +9,11 @@ public class SpawnerScript : MonoBehaviour
     public GameObject porcupine;
     public GameObject indicator;
     public GameObject deer;
-    public int turtleDelayTime = 3;
-    public double rabbitDelayTime = 1.5;
-    public int deerDelayTime = 4;
-    public int indicatorDelayTime = 3;
-    public int porcupineDelayTime = 8;
+    public int turtleDelayTime = 4;
+    public double rabbitDelayTime = 2;
+    public int deerDelayTime = 10;
+    public int indicatorDelayTime = 9;
+    public int porcupineDelayTime = 6;
     public float randXRange = 3.2f;
     public float randX;
     public float setY = 4.85f;
