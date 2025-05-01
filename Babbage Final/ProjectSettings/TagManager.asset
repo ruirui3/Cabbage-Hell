@@ -9,6 +9,7 @@ TagManager:
   - Music
   - ScoreText
   - Manager
+  - CurlBullet
   layers:
   - Default
   - TransparentFX
