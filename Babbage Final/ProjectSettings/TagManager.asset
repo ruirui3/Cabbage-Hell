@@ -65,13 +65,13 @@ TagManager:
   - name: New Layer 6
     uniqueID: 3218946825
     locked: 0
-  - name: New Layer 7
+  - name: UI LAYER1
     uniqueID: 4268187865
     locked: 0
-  - name: New Layer 8
+  - name: UILAYER2
     uniqueID: 2442072793
     locked: 0
-  - name: New Layer 9
+  - name: UILAYER3
     uniqueID: 3763830809
     locked: 0
   - name: New Layer 10
