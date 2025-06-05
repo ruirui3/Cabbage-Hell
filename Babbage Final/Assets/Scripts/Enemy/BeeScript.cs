@@ -3,8 +3,8 @@ using UnityEngine;
 public class Bee : MonoBehaviour
 {
     public ManageScore manager;
-    public float acceleration = 6f;
-    public float maxSpeed = 10f;
+    public float acceleration = 3f;
+    public float maxSpeed = 5f;
     public int hp = 1;
     private Rigidbody2D rb;
     private GameObject player;
@@ -26,7 +26,7 @@ public class Bee : MonoBehaviour
         Vector2 direction = ((Vector2)player.transform.position - rb.position).normalized;
         rb.velocity = Vector2.ClampMagnitude(rb.velocity + direction * acceleration * Time.fixedDeltaTime, maxSpeed);
 
-        if (hp <= 0 || transform.position.y < -Camera.main.orthographicSize - 1f)
+        if (hp <= 0 || transform.position.y < -5f)
         { // screen bottom buffer
             manager.AddScore(100);
             manager.AddCombo(3);

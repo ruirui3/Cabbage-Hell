@@ -156,8 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb1aa8e018df8d94ab8f51f372190e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 6
-  maxSpeed: 10
+  acceleration: 3
+  maxSpeed: 7
   hp: 1
   damageSFX: {fileID: 8300000, guid: 027002b66e704384a926c5f3b321f990, type: 3}
 --- !u!50 &6006016503620672120
