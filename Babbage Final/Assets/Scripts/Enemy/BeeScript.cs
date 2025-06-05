@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Bee : MonoBehaviour
 {
+    public ManageScore manager;
     public float acceleration = 6f;
     public float maxSpeed = 10f;
     public int hp = 1;
@@ -12,6 +13,8 @@ public class Bee : MonoBehaviour
 
     void Start()
     {
+        GameObject canvas = GameObject.Find("Canvas");
+        manager = canvas.transform.Find("Manager").GetComponent<ManageScore>();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -23,8 +26,12 @@ public class Bee : MonoBehaviour
         Vector2 direction = ((Vector2)player.transform.position - rb.position).normalized;
         rb.velocity = Vector2.ClampMagnitude(rb.velocity + direction * acceleration * Time.fixedDeltaTime, maxSpeed);
 
-        if (hp <= 0 || transform.position.y < -Camera.main.orthographicSize - 1f) // screen bottom buffer
+        if (hp <= 0 || transform.position.y < -Camera.main.orthographicSize - 1f)
+        { // screen bottom buffer
+            manager.AddScore(100);
+            manager.AddCombo(3);
             Destroy(gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -35,7 +42,7 @@ public class Bee : MonoBehaviour
         } 
         if (other.CompareTag("Player"))
         {
-            
+            manager.ResetCombo();
             ManageHealth health = other.gameObject.GetComponentInChildren<ManageHealth>();
             
             if (health != null)

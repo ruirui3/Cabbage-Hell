@@ -15,12 +15,15 @@ public class TurtleTranslation : MonoBehaviour
     public Vector2 targetSpeedDir;
     public AudioClip damageSFX;
     public int hp = 2;
+    public ManageScore manager;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject canvas = GameObject.Find("Canvas");
         moveTo = GameObject.FindWithTag("Player");
         bulletManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<DropBulletScript>();
+        manager = canvas.transform.Find("Manager").GetComponent<ManageScore>();
     }
 
     // Update is called once per frame
@@ -35,6 +38,8 @@ public class TurtleTranslation : MonoBehaviour
 
         if (hp <= 0) {
             bulletManager.addBullet(1);
+            manager.AddCombo(5);
+            manager.AddScore(300);
             goPoof();
         } else if (transform.position.y < bottomBound)
         {
@@ -55,13 +60,15 @@ public class TurtleTranslation : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+
         
+
         if (other.gameObject.tag == "bullet") {
             hp--;
         }
         if (other.gameObject.tag == "Player")
         {
-            
+            manager.ResetCombo();
             ManageHealth health = other.gameObject.GetComponentInChildren<ManageHealth>();
             
             if (health != null)

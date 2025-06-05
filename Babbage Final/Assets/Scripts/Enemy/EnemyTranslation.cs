@@ -8,6 +8,7 @@ public class EnemyTranslation : MonoBehaviour
     //float cameraYBound = -5f;
     public AudioClip damageSFX;
     public DropBulletScript bulletManager;
+    public ManageScore manager;
 
     bool isMoving;
     bool isInTornado;
@@ -22,10 +23,13 @@ public class EnemyTranslation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject canvas = GameObject.Find("Canvas");
+        manager = canvas.transform.Find("Manager").GetComponent<ManageScore>();
         isMoving = true;
         isInTornado = false;
         playerController = GameObject.Find("Cabbage Cart").GetComponent<PlayerController>();
         bulletManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<DropBulletScript>();
+
         
     }
 
@@ -75,11 +79,13 @@ public class EnemyTranslation : MonoBehaviour
         
         if (other.gameObject.tag == "bullet" || other.gameObject.tag == "CurlBullet") {
             bulletManager.addBullet(2);
+            manager.AddScore(100);
+            manager.AddCombo(3);
             GoPoof();
         }
         if (other.gameObject.tag == "Player")
         {
-            
+            manager.ResetCombo();
             ManageHealth health = other.gameObject.GetComponentInChildren<ManageHealth>();
             
             if (health != null)

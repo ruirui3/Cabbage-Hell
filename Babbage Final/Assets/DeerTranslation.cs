@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class DeerTranslation : MonoBehaviour
 {
+    public ManageScore manager;
     public float speed = 2.5f;
     public float bottomBound = -5f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject canvas = GameObject.Find("Canvas");
+        manager = canvas.transform.Find("Manager").GetComponent<ManageScore>();
     }
 
     // Update is called once per frame
@@ -17,6 +19,8 @@ public class DeerTranslation : MonoBehaviour
     {
         transform.Translate(Vector2.down * Time.deltaTime * speed); 
         if (transform.position.y < bottomBound){
+            manager.AddScore(1000);
+            manager.AddCombo(12);
             goPoof();
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PorcupineTranslation : MonoBehaviour
 {   
     public DropBulletScript bulletManager;
-
+    public ManageScore manager;
     public float initSpeed = 2f;
     public float bottomBound = -5f;
     public float walkBound = 10f;
@@ -22,6 +22,8 @@ public class PorcupineTranslation : MonoBehaviour
     void Start()
     {
         bulletManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<DropBulletScript>();
+        GameObject canvas = GameObject.Find("Canvas");
+        manager = canvas.transform.Find("Manager").GetComponent<ManageScore>();
     }
 
     // Update is called once per frame
@@ -35,6 +37,8 @@ public class PorcupineTranslation : MonoBehaviour
         }
         
         if (hp <= 0) {
+            manager.AddScore(170);
+            manager.AddCombo(4);
             bulletManager.addBullet(4);
             goPoof();
         } else if (transform.position.y < bottomBound)

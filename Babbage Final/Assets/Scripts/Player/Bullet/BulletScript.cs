@@ -24,7 +24,7 @@ public class BulletScript : MonoBehaviour
     void Start()
     {
         GameObject canvas = GameObject.Find("Canvas");
-        manager = canvas.transform.Find("Score").GetComponent<ManageScore>();
+        manager = canvas.transform.Find("Manager").GetComponent<ManageScore>();
         playerController = GameObject.Find("Cabbage Cart").GetComponent<PlayerController>();
         currentBulletType = playerController.GetBulletType();
         
@@ -176,7 +176,8 @@ public class BulletScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            manager.AddScore(2); //suggest changing value based on type of enemy
+            manager.AddScore(40); //suggest changing value based on type of enemy
+            manager.AddCombo(1);
             KillBullet();
             AudioSource.PlayClipAtPoint(explosionSfx, transform.position);
         }
@@ -187,7 +188,8 @@ public class BulletScript : MonoBehaviour
         if (other.gameObject.tag == "Enemy" && !hitEnemies.Contains(other.gameObject))
         {
             hitEnemies.Add(other.gameObject);
-            manager.AddScore(2); //suggest changing value based on type of enemy
+            manager.AddScore(1); //suggest changing value based on type of enemy
+            manager.AddCombo(1);
             pierceCount++;
 
             if (pierceCount >= maxPierce)

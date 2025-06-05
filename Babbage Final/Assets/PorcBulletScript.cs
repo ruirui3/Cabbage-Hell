@@ -7,11 +7,13 @@ public class PorcBulletScript : MonoBehaviour
     public float speed = 50f;
     public float bottomBound = -5f;
     public AudioClip damageSFX;
+    public ManageScore manager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject canvas = GameObject.Find("Canvas");
+        manager = canvas.transform.Find("Manager").GetComponent<ManageScore>();
     }
 
     // Update is called once per frame
@@ -34,6 +36,7 @@ public class PorcBulletScript : MonoBehaviour
         if (Other.gameObject.tag == "Player")
         {
             Debug.Log("COLLISION");
+            manager.ResetCombo();
             ManageHealth health = Other.gameObject.GetComponentInChildren<ManageHealth>();
             
             if (health != null)

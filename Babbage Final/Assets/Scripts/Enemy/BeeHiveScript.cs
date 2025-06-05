@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Beehive : MonoBehaviour
 {
+    public ManageScore manager;
     public GameObject beePrefab;
     public int hp = 5;
     public float beeSpawnChanceOnHit = 0.5f;
@@ -23,6 +24,8 @@ public class Beehive : MonoBehaviour
         {
             SpawnBee();
             SpawnBee();
+            manager.AddScore(500);
+            manager.AddCombo(8);
             Destroy(gameObject);
         }
     }
@@ -31,5 +34,12 @@ public class Beehive : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(buzz, transform.position);
         Instantiate(beePrefab, transform.position + new Vector3(Random.Range(-beeSpawnRange, beeSpawnRange), Random.Range(-beeSpawnRange, beeSpawnRange)), Quaternion.identity);
+    }
+
+    void Start()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        manager = canvas.transform.Find("Manager").GetComponent<ManageScore>();
+        
     }
 }
