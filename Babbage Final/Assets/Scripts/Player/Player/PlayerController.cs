@@ -30,7 +30,15 @@ public class PlayerController : MonoBehaviour
     public AudioClip bulletSwitch;
 
 
+    public float GetVelocity()
+    {
+        return Mathf.Abs(currentVelocity);
+    }
 
+    public float GetMaxVelocity()
+    {
+        return maxVelocity;
+    }
 
     void Start()
     {
