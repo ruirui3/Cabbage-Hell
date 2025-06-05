@@ -1328,7 +1328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   img: {fileID: 474172017}
   player: {fileID: 979007541}
-  players: {fileID: 0}
+  manageScore: {fileID: 518773124}
 --- !u!114 &540548645
 MonoBehaviour:
   m_ObjectHideFlags: 0

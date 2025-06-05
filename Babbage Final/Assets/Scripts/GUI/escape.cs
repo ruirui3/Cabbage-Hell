@@ -16,11 +16,15 @@ public class escape : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape)){
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
             Debug.Log("Escape key was released");
-            //thing.End();
-            ScoreManager.Instance.SaveScore(players.GetScore());
+
+            if (players.GetScore() > 0) // Optional: only save if meaningful
+                ScoreManager.Instance.SaveScore(players.GetScore());
+
             SceneManager.LoadSceneAsync("Main Menu");
         }
     }
+
 }

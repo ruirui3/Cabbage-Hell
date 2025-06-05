@@ -1,76 +1,56 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-
 
 public class ManageScore : MonoBehaviour
 {
-
     public TMP_Text scoreText;
     public TMP_Text comboText;
 
     private int score = 0;
-
     private int combo = 0;
-
     private Vector3 comboOriginalScale;
 
+    public int GetScore() => score;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
         scoreText.text = score.ToString("D8");
         comboText.text = "x" + combo.ToString();
         comboOriginalScale = comboText.rectTransform.localScale;
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            AddScore(4);
+            AddCombo(1); // Simulate combo
+            AddScore(4); // Simulate hit
         }
 
-        if (Input.GetKeyDown(KeyCode.M)) // Optional miss simulation
+        if (Input.GetKeyDown(KeyCode.M)) // Simulate miss
         {
             ResetCombo();
-            UpdateUI();
         }
 
-       
-
+        if (Input.GetKeyDown(KeyCode.Return)) // Simulate game end
+        {
+            ScoreManager.Instance.SaveScore(score);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Scoreboard");
+        }
     }
 
     public void AddScore(int addedScore)
     {
-
         float multiplier = combo < 2 ? 1f : combo / 2f;
-
-
-
-        score +=  Mathf.RoundToInt(addedScore * multiplier);
+        score += Mathf.RoundToInt(addedScore * multiplier);
         UpdateUI();
-
-    }
-
-    public void UpdateUI()
-    {
-        scoreText.text = score.ToString("D8");
-        comboText.text = "x" + combo.ToString();
-
-
     }
 
     public void RemoveScore(int removedScore)
     {
         score = Mathf.Max(0, score - removedScore);
         UpdateUI();
-
     }
 
     public void AddCombo(int addedCombo)
@@ -86,6 +66,12 @@ public class ManageScore : MonoBehaviour
         UpdateUI();
     }
 
+    private void UpdateUI()
+    {
+        scoreText.text = score.ToString("D8");
+        comboText.text = "x" + combo.ToString();
+    }
+
     private IEnumerator AnimateComboPop()
     {
         RectTransform comboRect = comboText.rectTransform;
@@ -93,7 +79,6 @@ public class ManageScore : MonoBehaviour
         float t = 0f;
         float duration = 0.1f;
 
-        // Scale up
         while (t < duration)
         {
             t += Time.deltaTime;
@@ -101,7 +86,6 @@ public class ManageScore : MonoBehaviour
             yield return null;
         }
 
-        // Scale back
         t = 0f;
         while (t < duration)
         {
@@ -112,7 +96,4 @@ public class ManageScore : MonoBehaviour
 
         comboRect.localScale = comboOriginalScale;
     }
-
-
-
 }

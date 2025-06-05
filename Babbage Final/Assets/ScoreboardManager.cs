@@ -6,52 +6,55 @@ using System.Linq;
 
 public class ScoreboardManager : MonoBehaviour
 {
-    private TMP_Text[] scoreTexts; // Assign in Inspector
+    private TMP_Text[] scoreTexts;
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         DontDestroyOnLoad(gameObject);
-        SceneManager.sceneLoaded += OnSceneLoaded; // Subscribe to scene load event
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnDisable() {
-        SceneManager.sceneLoaded -= OnSceneLoaded; // Unsubscribe to avoid memory leaks
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        if (scene.name == "Scoreboard") {
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Scoreboard")
+        {
+            // Get all tagged ScoreText objects and order them by name
             GameObject[] textObjects = GameObject.FindGameObjectsWithTag("ScoreText");
-            scoreTexts = new TMP_Text[textObjects.Length];
-            for (int i = 0; i < textObjects.Length; i++) {
-                scoreTexts[i] = textObjects[i].GetComponent<TMP_Text>();
-            }
 
+            scoreTexts = textObjects
+                .Select(obj => obj.GetComponent<TMP_Text>())
+                .OrderBy(t => t.name) // Assuming ScoreText1, ScoreText2, etc.
+                .ToArray();
 
             DisplayHighScores();
         }
     }
+
     public void DisplayHighScores()
     {
         List<int> scores = ScoreManager.Instance.GetHighScores();
-        for (int i = 0; i < scoreTexts.Length; i++) {
-            if (i < scores.Count) {
-                scoreTexts[i].text = scores[i].ToString(); // Show Score
-            }
-            else {
-                scoreTexts[i].text = "0"; // If no score, show 0
-            }
+
+        for (int i = 0; i < scoreTexts.Length; i++)
+        {
+            if (i < scores.Count)
+                scoreTexts[i].text = scores[i].ToString("D8");
+            else
+                scoreTexts[i].text = ""; // Leave empty if no score yet
         }
     }
-    void Start()
-    {
-        LoadScores();
-    }
 
-
-    void LoadScores()
+    void Update()
     {
-        List<int> scores = ScoreManager.Instance.GetHighScores();
-        for (int i = 0; i < scoreTexts.Length; i++) {
-            scoreTexts[i].text = scores[i].ToString();
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            ScoreManager.Instance.ClearAllScores();
+            DisplayHighScores(); // Refresh the display immediately
         }
     }
+
 }

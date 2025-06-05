@@ -1,6 +1,5 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -11,41 +10,76 @@ public class ScoreManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Keep it across scenes
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
     }
-    
-    public void SaveScore(int score){
-        List<int> scores = GetHighScores(); //creates list with 0 as all high score or past scores on list
-        scores.Add(score); //add in the score
-        scores.Sort((a, b) => b.CompareTo(a));
 
-        if (scores.Count > 5) {
-            scores.RemoveAt(5);
+    public void SaveScore(int score)
+    {
+        List<int> scores = GetHighScores();
+
+        // Only add if it's not already in the list
+        // OR only add if it's higher than the lowest score
+        if (!scores.Contains(score))
+        {
+            scores.Add(score);
+            scores.Sort((a, b) => b.CompareTo(a)); // Descending
+
+            if (scores.Count > 5)
+                scores.RemoveAt(scores.Count - 1);
+
+            for (int i = 0; i < 5; i++)
+            {
+                if (i < scores.Count)
+                    PlayerPrefs.SetInt("Score" + i, scores[i]);
+                else
+                    PlayerPrefs.DeleteKey("Score" + i);
+            }
+
+            PlayerPrefs.Save();
+            Debug.Log("Saved new score: " + score);
         }
-
-        for (int i = 0; i < scores.Count; i++) {
-            PlayerPrefs.SetInt("Score" + i, scores[i]);
-            Debug.Log("Saving Score " + i + ": " + scores[i]);
+        else
+        {
+            Debug.Log("Duplicate score not saved: " + score);
         }
+    }
 
-        PlayerPrefs.Save(); 
-        Debug.Log("Scores Saved!");
-    }  
 
-    public List<int> GetHighScores() {   
+    public List<int> GetHighScores()
+    {
         List<int> scores = new List<int>();
 
-        for (int i = 0; i < 5; i++) {
-            int score = PlayerPrefs.GetInt("Score" + i, 0); // Default 0 if no score found
-            scores.Add(score);
-
+        for (int i = 0; i < 5; i++)
+        {
+            if (PlayerPrefs.HasKey("Score" + i))
+                scores.Add(PlayerPrefs.GetInt("Score" + i));
         }
+
         return scores;
     }
 
+    // 👇 Press "J" to clear scores
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            ClearAllScores();
+        }
+    }
+
+    public void ClearAllScores()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            PlayerPrefs.DeleteKey("Score" + i);
+        }
+
+        PlayerPrefs.Save();
+        Debug.Log("Leaderboard reset.");
+    }
 }
