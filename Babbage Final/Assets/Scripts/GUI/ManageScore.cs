@@ -89,7 +89,7 @@ public class ManageScore : MonoBehaviour
     private IEnumerator AnimateComboPop()
     {
         RectTransform comboRect = comboText.rectTransform;
-        Vector3 targetScale = comboOriginalScale * 1.3f;
+        Vector3 targetScale = comboOriginalScale * 1.15f;
         float t = 0f;
         float duration = 0.1f;
 

@@ -2496,7 +2496,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1327826375
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3643,6 +3643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60df7f12454e72a4992ac40f404934da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooter: {fileID: 2051708535}
   bulletDropSound: {fileID: 8300000, guid: 52b461af25c20e14088317e9bd53651e, type: 3}
 --- !u!114 &1946452018
 MonoBehaviour:
