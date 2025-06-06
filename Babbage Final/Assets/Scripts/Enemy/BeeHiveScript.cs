@@ -7,6 +7,7 @@ public class Beehive : MonoBehaviour
     public int hp = 5;
     public float beeSpawnChanceOnHit = 0.5f;
     public float beeSpawnRange = 1.5f;
+    public float speed = 1.0f;
     public AudioClip buzz;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -20,6 +21,10 @@ public class Beehive : MonoBehaviour
 
     void Update()
     {
+        if (transform.position.y > 3.0f)
+        {
+            transform.Translate(Vector2.down * speed * Time.deltaTime);
+        }
         if (hp <= 0)
         {
             SpawnBee();
