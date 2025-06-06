@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4988166330132445662}
   - component: {fileID: 8634306443172690431}
   m_Layer: 0
-  m_Name: TurtleSpawner
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,11 +50,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01bbabf1c6675443bbcbf01a058a3004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turtle: {fileID: 1734988937037452433, guid: e48c5b7ff88174010930d90692d0d98e, type: 3}
-  delayTime: 1
-  randXRange: 3.2
-  randX: 3
-  setY: 5.5
+  waves:
+  - waveName: basic_rabbits
+    enemies:
+    - enemyPrefab: {fileID: 8851823624434618989, guid: f4079e4a5a44a4d45931ca91f9426238, type: 3}
+      count: 3
+      delayBetweenSpawns: 0.5
+  - waveName: basic_turtles
+    enemies:
+    - enemyPrefab: {fileID: 1734988937037452433, guid: e48c5b7ff88174010930d90692d0d98e, type: 3}
+      count: 2
+      delayBetweenSpawns: 1.5
+  spawnPoints: []
+  minTimeBetweenWaves: 5
+  maxTimeBetweenWaves: 10
+  waveIncomingSFX: {fileID: 8300000, guid: 64599b93867aac44c898198408114403, type: 3}
+  audioSource: {fileID: 0}
 --- !u!222 &4988166330132445662
 CanvasRenderer:
   m_ObjectHideFlags: 0

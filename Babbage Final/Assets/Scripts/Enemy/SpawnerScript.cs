@@ -2,132 +2,76 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class Wave
+{
+    public string waveName;
+    public List<WaveEnemy> enemies; // List of enemy types in this wave
+}
+
+[System.Serializable]
+public class WaveEnemy
+{
+    public GameObject enemyPrefab;
+    public int count;
+    public float delayBetweenSpawns;
+}
+
 public class SpawnerScript : MonoBehaviour
 {
-    public GameObject turtle;
-    public GameObject rabbit;
-    public GameObject porcupine;
-    public GameObject indicator;
-    public GameObject deer;
-    public int turtleDelayTime = 4;
-    public double rabbitDelayTime = 2;
-    public int deerDelayTime = 10;
-    public int indicatorDelayTime = 9;
-    public int porcupineDelayTime = 6;
-    public float randXRange = 3.2f;
-    public float randX;
-    public float setY = 4.85f;
-    private float msDeer = 0f;
-    private float msTurtle = 0f;
-    private float msRabbit = 0f;
-    private float msPorcupine = 0f;
-    private float msInd = 0f;
+    public List<Wave> waves;
+    public Transform[] spawnPoints; // Predefined spawn spots
+    public float minTimeBetweenWaves = 5f;
+    public float maxTimeBetweenWaves = 10f;
+    public AudioClip waveIncomingSFX;
 
-    private Vector2 start;
-    private Vector2 end;
-    private Vector2 direction;
+    private bool isSpawningWave = false;
 
-    private float xmin = -2f;
-    private float xmax = 2f;
-    //private float ymin = -4.85f;
-    // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(WaveSpawner());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator WaveSpawner()
     {
-        msTurtle += Time.deltaTime;
-        msRabbit += Time.deltaTime;
-        msPorcupine += Time.deltaTime;
-        msDeer += Time.deltaTime;
-        msInd += Time.deltaTime;
-
-        SpawnTurtle();
-        SpawnRabbit();
-        SpawnPorcupine();
-        //SpawnDeer();
-        SpawnInd();
-    }
-
-    public void SpawnTurtle()
-    {
-        if (msTurtle >= turtleDelayTime)
+        while (true)
         {
-            float randX = Random.Range(-randXRange, randXRange);
-            Instantiate(turtle, new Vector2(randX, setY), transform.rotation); //change turtle to enemy type
-            msTurtle = 0;
-        }
-    }
+            if (!isSpawningWave)
+            {
+                isSpawningWave = true;
 
-    public void SpawnRabbit()
-    {
-        if (msRabbit >= rabbitDelayTime)
-        {
-            float randX = Random.Range(-randXRange, randXRange);
-            Instantiate(rabbit, new Vector2(randX, setY), transform.rotation); //change turtle to enemy type
-            msRabbit = 0;
-        }
-    }
+                float waitTime = Random.Range(minTimeBetweenWaves, maxTimeBetweenWaves);
+                yield return new WaitForSeconds(waitTime);
 
-    public void SpawnPorcupine()
-    {
-        if (msPorcupine >= porcupineDelayTime)
-        {
-            float randX = Random.Range(-randXRange, randXRange);
-            Instantiate(porcupine, new Vector2(randX, setY), transform.rotation); //change turtle to enemy type
-            msPorcupine = 0;
-        }
-    }
+                int randomWaveIndex = Random.Range(0, waves.Count);
+                Wave waveToSpawn = waves[randomWaveIndex];
 
+                // Play wave incoming SFX
+                if (waveIncomingSFX)
+                    AudioSource.PlayClipAtPoint(waveIncomingSFX, transform.position);
 
-    public void SpawnInd() {
-        if (msInd >= indicatorDelayTime) {
-            // direction = GenerateRandVector();
-            // RotateAmt();
-            //instantiate indicator
-            float randX = Random.Range(xmin,xmax);
-            Destroy(Instantiate(indicator, new Vector2(randX, 0), transform.rotation),1);
-            msInd = -1;
-            SpawnDeer(randX);
-        }
-    }
+                yield return new WaitForSeconds(1f); // Optional pause after SFX
 
-    public void SpawnDeer(float setX)
-    {
-        
-            if (msDeer >= deerDelayTime){
-            //Instantiate(deer, start, transform.rotation);
-            Instantiate(deer, new Vector2(setX, setY), transform.rotation);
-
-            msDeer = 0;
+                yield return StartCoroutine(SpawnWave(waveToSpawn));
+                isSpawningWave = false;
             }
 
-
+            yield return null;
+        }
     }
-    // private Vector2 GenerateRandVector() {
-        
-    //     //random horizontal spawn range
-    //     float randomX = Random.Range(xmin, xmax);
-    
-    //     //Fixed y range -> minx and miny are already defined
-    //     //return vectors
-    //     Vector2 startPoint = new Vector2(randomX, setY);
-    //     Vector2 endPoint = new Vector2(randomX, -setY);
-    //     //set start point to start and end to end
-    //     start = startPoint;
-    //     end = endPoint;
-    //     // calculate angle to rotate based on the direction
-    //     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-    //     // Apply rotation
-    //     transform.rotation = Quaternion.Euler(0, 0, angle);
-        
-    //     // Calculate and return the direction vector
-       
-    //     return (endPoint - startPoint);
-    // }
 
+    IEnumerator SpawnWave(Wave wave)
+    {
+        Debug.Log("Spawning wave: " + wave.waveName);
 
+        foreach (WaveEnemy waveEnemy in wave.enemies)
+        {
+            for (int i = 0; i < waveEnemy.count; i++)
+            {
+                Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+                Instantiate(waveEnemy.enemyPrefab, spawnPoint.position, Quaternion.identity);
+                yield return new WaitForSeconds(waveEnemy.delayBetweenSpawns);
+            }
+        }
+    }
 }
