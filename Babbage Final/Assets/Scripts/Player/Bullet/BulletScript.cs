@@ -20,6 +20,8 @@ public class BulletScript : MonoBehaviour
     private bool isCurlBullet = false;
     private float curlBulletLifetime = 1f;
 
+    public Sprite EnemyBullet;//carrot bullet sprite
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +41,9 @@ public class BulletScript : MonoBehaviour
         {
             speed = 5f;
         }
-        if (currentBulletType == 2)
+        if (currentBulletType == 2)//carrot
         {
+            GetComponent<SpriteRenderer>().sprite = EnemyBullet;
             speed = 5f;
             maxPierce = 2; //temporary
             pierceCount = 0;
