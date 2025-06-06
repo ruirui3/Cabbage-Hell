@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8463494444293277798}
   - component: {fileID: 3904410037638849493}
   - component: {fileID: 4130175601777461817}
-  - component: {fileID: -3783910108219541773}
   - component: {fileID: 1201987554628284409}
   m_Layer: 0
   m_Name: Rabbit
@@ -103,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageSFX: {fileID: 8300000, guid: 027002b66e704384a926c5f3b321f990, type: 3}
   bulletManager: {fileID: 0}
+  manager: {fileID: 0}
   bulletPrefab: {fileID: 4906810771895717694, guid: 941a64d6b588d284e9d560aab75b1e96, type: 3}
   bottomBound: -5
 --- !u!61 &3904410037638849493
@@ -177,22 +177,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-3783910108219541773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8851823624434618989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df061422835f140c2ab4473d9246034d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyBullet: {fileID: 7096309766127350316, guid: 7b685857a27b34bb6898579a0bae35c4, type: 3}
-  speed: 1
-  rate: 1
-  mils: 0
 --- !u!95 &1201987554628284409
 Animator:
   serializedVersion: 5
