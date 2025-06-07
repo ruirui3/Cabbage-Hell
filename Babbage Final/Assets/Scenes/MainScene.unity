@@ -483,7 +483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
       propertyPath: waves.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
       propertyPath: maxTimeBetweenWaves
@@ -530,6 +530,10 @@ PrefabInstance:
       value: beehive
       objectReference: {fileID: 0}
     - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
+      propertyPath: waves.Array.data[5].waveName
+      value: deer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
       propertyPath: waves.Array.data[2].enemies.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -539,6 +543,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
       propertyPath: waves.Array.data[4].enemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
+      propertyPath: waves.Array.data[5].enemies.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
@@ -562,6 +570,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
+      propertyPath: waves.Array.data[5].enemies.Array.data[0].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
       propertyPath: waves.Array.data[2].enemies.Array.data[0].enemyPrefab
       value: 
       objectReference: {fileID: 566668826834268299, guid: e3c0a50deb7e45948a23ac1385b8c25b, type: 3}
@@ -581,6 +593,10 @@ PrefabInstance:
       propertyPath: waves.Array.data[4].enemies.Array.data[1].enemyPrefab
       value: 
       objectReference: {fileID: 8851823624434618989, guid: f4079e4a5a44a4d45931ca91f9426238, type: 3}
+    - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
+      propertyPath: waves.Array.data[5].enemies.Array.data[0].enemyPrefab
+      value: 
+      objectReference: {fileID: 5759019684836938145, guid: fce764e50bf19b844a6742d4089d1b15, type: 3}
     - target: {fileID: 3679735975740519360, guid: 6410d21928a5dda43bf57c9133fe2f8e, type: 3}
       propertyPath: waves.Array.data[0].enemies.Array.data[0].delayBetweenSpawns
       value: 0.2
