@@ -52,8 +52,8 @@ public class PorcupineTranslation : MonoBehaviour
         if (porcShooting) {
             if (timer >= spawnInterval) {
                 Instantiate(PorcBullet, transform.position + Vector3.down*.5f, transform.rotation);
-                Instantiate(PorcBullet, transform.position + Vector3.down*.5f + Vector3.right*.5f, Quaternion.Euler(0, 0, 30));
-                Instantiate(PorcBullet, transform.position + Vector3.down*.5f + Vector3.left*.5f, Quaternion.Euler(0, 0, -30));
+                Instantiate(PorcBullet, transform.position + Vector3.right*.5f, Quaternion.Euler(0, 0, 30));
+                Instantiate(PorcBullet, transform.position + Vector3.left*.5f, Quaternion.Euler(0, 0, -30));
                 timer = 0f;
             }
         }
