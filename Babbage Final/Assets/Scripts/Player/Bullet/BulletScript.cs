@@ -29,7 +29,7 @@ public class BulletScript : MonoBehaviour
         manager = canvas.transform.Find("Manager").GetComponent<ManageScore>();
         playerController = GameObject.Find("Cabbage Cart").GetComponent<PlayerController>();
         currentBulletType = playerController.GetBulletType();
-        
+
         hitEnemies = new HashSet<GameObject>();
 
         //Different types of bullets can have different types of attributes?
@@ -44,11 +44,13 @@ public class BulletScript : MonoBehaviour
         if (currentBulletType == 2)//carrot
         {
             GetComponent<SpriteRenderer>().sprite = EnemyBullet;
+            GetComponent<SpriteRenderer>().enabled = true;
+            ToggleRenderer(false);
             speed = 5f;
             maxPierce = 2; //temporary
             pierceCount = 0;
         }
-        if (currentBulletType == 3) 
+        if (currentBulletType == 3)
         {
             speed = 5f;
         }
@@ -75,7 +77,7 @@ public class BulletScript : MonoBehaviour
     {
 
         currentBulletType = playerController.GetBulletType();
-        Debug.Log(currentBulletType); 
+        Debug.Log(currentBulletType);
 
         ChecksBoundAndMovement();
 
@@ -83,10 +85,16 @@ public class BulletScript : MonoBehaviour
 
     private void ChecksBoundAndMovement()
     {
-        
+
         if (!isCurlBullet) // Normal movement
         {
+            GetComponent<SpriteRenderer>().enabled = false;
+            if (currentBulletType == 2)
+            {
+                GetComponent<SpriteRenderer>().enabled = true;
+            }
             transform.Translate(Vector2.up * speed * Time.deltaTime);
+            //GetComponent<SpriteRenderer>().transform.Rotate(0, 0, 180 * Time.deltaTime);
         }
         else if (isCurlBullet) // Curl bullet movement
         {
@@ -104,7 +112,7 @@ public class BulletScript : MonoBehaviour
         if (curlTimer > 0)
         {
             curlTimer -= Time.deltaTime;
-            transform.position += (Vector3) curlDirection * curlSpeed * Time.deltaTime;
+            transform.position += (Vector3)curlDirection * curlSpeed * Time.deltaTime;
             transform.Rotate(0, 0, 180 * Time.deltaTime); // Spins while moving outward
         }
         else
@@ -126,25 +134,28 @@ public class BulletScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         KillBullet();
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
 
         if (currentBulletType == 2) //Carrot bullet. Does bullet have piercing?
         {
             CarrotBulletFunction(other);
-        } else if (currentBulletType == 4 && gameObject.tag != "CurlBullet")
+        }
+        else if (currentBulletType == 4 && gameObject.tag != "CurlBullet")
         {
             SpawnCurlBullets();
             KillBullet();
-        } else
+        }
+        else
         {
             HitEnemy(other);
         }
-        
+
     }
 
     private void SpawnCurlBullets()
@@ -152,9 +163,9 @@ public class BulletScript : MonoBehaviour
         int numBullets = 6; //can be changed
         int equalAngle = 360 / numBullets;
 
-        for (int i = 0; i < numBullets; i++) 
+        for (int i = 0; i < numBullets; i++)
         {
-            int angle = i* equalAngle;
+            int angle = i * equalAngle;
             Vector2 spawnDirection = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
             Vector3 spawnPosition = transform.position + (Vector3)spawnDirection * 0.3f;
 
@@ -203,4 +214,17 @@ public class BulletScript : MonoBehaviour
 
         }
     }
+
+    //chat recced toggle code
+    void ToggleRenderer(bool isOn){
+    Transform childRenderer = transform.Find("Renderer");
+
+    if (childRenderer != null) {
+        SpriteRenderer sr = childRenderer.GetComponent<SpriteRenderer>();
+        if (sr != null) {
+            sr.enabled = isOn;
+            }
+        }
+    }
+
 }
