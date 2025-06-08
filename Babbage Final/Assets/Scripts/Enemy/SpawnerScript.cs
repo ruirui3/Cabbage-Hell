@@ -7,6 +7,7 @@ public class Wave
 {
     public string waveName;
     public List<WaveEnemy> enemies; // List of enemy types in this wave
+    public int startingAtWaveCount;
 }
 
 [System.Serializable]
@@ -21,9 +22,11 @@ public class SpawnerScript : MonoBehaviour
 {
     public List<Wave> waves;
     public Transform[] spawnPoints; // Predefined spawn spots
-    public float minTimeBetweenWaves = 5f;
-    public float maxTimeBetweenWaves = 10f;
+    public float minTimeBetweenWaves = 3f;
+    public float maxTimeBetweenWaves = 6f;
     public AudioClip waveIncomingSFX;
+    public int maxWaveIndex = 0;
+    public int waveCount = 0;
 
     private bool isSpawningWave = false;
 
@@ -43,8 +46,17 @@ public class SpawnerScript : MonoBehaviour
                 float waitTime = Random.Range(minTimeBetweenWaves, maxTimeBetweenWaves);
                 yield return new WaitForSeconds(waitTime);
 
-                int randomWaveIndex = Random.Range(0, waves.Count);
-                Wave waveToSpawn = waves[randomWaveIndex];
+                waveCount++;
+                Wave waveToSpawn;
+                if (maxWaveIndex < waves.Count-1 && waveCount >= waves[maxWaveIndex+1].startingAtWaveCount)
+                {
+                    maxWaveIndex++;
+                    waveToSpawn = waves[maxWaveIndex];
+                }
+                else
+                {
+                    waveToSpawn = waves[Random.Range(0, maxWaveIndex)];
+                }
 
                 // Play wave incoming SFX
                 if (waveIncomingSFX)
