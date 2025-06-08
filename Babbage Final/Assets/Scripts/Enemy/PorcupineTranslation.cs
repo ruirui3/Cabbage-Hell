@@ -40,7 +40,7 @@ public class PorcupineTranslation : MonoBehaviour
             manager.AddScore(170);
             manager.AddCombo(4);
             bulletManager.addBullet(4);
-            //goPoof();
+            goPoof();
         } else if (transform.position.y < bottomBound)
         {
            goPoof();
