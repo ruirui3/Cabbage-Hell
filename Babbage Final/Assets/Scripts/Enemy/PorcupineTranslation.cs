@@ -8,7 +8,7 @@ public class PorcupineTranslation : MonoBehaviour
     public ManageScore manager;
     public float initSpeed = 2f;
     public float bottomBound = -20f;
-    public float walkBound = 10f;
+    private float walkBound;
     public AudioClip damageSFX;
     public int hp = 1;
     public Animator animator;
@@ -24,6 +24,8 @@ public class PorcupineTranslation : MonoBehaviour
         bulletManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<DropBulletScript>();
         GameObject canvas = GameObject.Find("Canvas");
         manager = canvas.transform.Find("Manager").GetComponent<ManageScore>();
+
+        walkBound = Random.Range(-1f, 3f);
     }
 
     // Update is called once per frame
