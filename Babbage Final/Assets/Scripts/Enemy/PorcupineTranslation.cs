@@ -7,7 +7,7 @@ public class PorcupineTranslation : MonoBehaviour
     public DropBulletScript bulletManager;
     public ManageScore manager;
     public float initSpeed = 2f;
-    public float bottomBound = -5f;
+    public float bottomBound = -20f;
     public float walkBound = 10f;
     public AudioClip damageSFX;
     public int hp = 1;
@@ -16,7 +16,7 @@ public class PorcupineTranslation : MonoBehaviour
 
     public GameObject PorcBullet;
     public float timer = 0f;
-    public float spawnInterval = 2f;
+    public float spawnInterval = .5f;
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +40,10 @@ public class PorcupineTranslation : MonoBehaviour
             manager.AddScore(170);
             manager.AddCombo(4);
             bulletManager.addBullet(4);
-            goPoof();
+            //goPoof();
         } else if (transform.position.y < bottomBound)
         {
-            goPoof();
+           goPoof();
         }
 
         timer += Time.deltaTime;
@@ -51,9 +51,9 @@ public class PorcupineTranslation : MonoBehaviour
         //Porcupine bullets
         if (porcShooting) {
             if (timer >= spawnInterval) {
-                Instantiate(PorcBullet, transform.position, transform.rotation);
-                Instantiate(PorcBullet, transform.position, Quaternion.Euler(0, 0, 30));
-                Instantiate(PorcBullet, transform.position, Quaternion.Euler(0, 0, -30));
+                Instantiate(PorcBullet, transform.position + Vector3.down*.5f, transform.rotation);
+                Instantiate(PorcBullet, transform.position + Vector3.down*.5f + Vector3.right*.5f, Quaternion.Euler(0, 0, 30));
+                Instantiate(PorcBullet, transform.position + Vector3.down*.5f + Vector3.left*.5f, Quaternion.Euler(0, 0, -30));
                 timer = 0f;
             }
         }
