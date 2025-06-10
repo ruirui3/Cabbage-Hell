@@ -76,7 +76,7 @@ public class BulletScript : MonoBehaviour
     void Update()
     {
 
-        currentBulletType = playerController.GetBulletType();
+        //currentBulletType = playerController.GetBulletType();
         Debug.Log(currentBulletType);
 
         ChecksBoundAndMovement();
