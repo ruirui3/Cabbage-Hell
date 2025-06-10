@@ -36,7 +36,7 @@ public class Bee : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("bullet"))
+        if (other.CompareTag("bullet") || other.CompareTag("CurlBullet"))
         {
             hp--;
         } 

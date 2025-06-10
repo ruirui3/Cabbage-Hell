@@ -67,7 +67,7 @@ public class PorcupineTranslation : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "bullet") {
+        if (other.gameObject.tag == "bullet" || other.CompareTag("CurlBullet")) {
             hp--;
         }
     }

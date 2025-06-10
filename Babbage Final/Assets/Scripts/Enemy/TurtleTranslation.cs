@@ -63,7 +63,7 @@ public class TurtleTranslation : MonoBehaviour
 
         
 
-        if (other.gameObject.tag == "bullet") {
+        if (other.gameObject.tag == "bullet" || other.CompareTag("CurlBullet")) {
             hp--;
         }
         if (other.gameObject.tag == "Player")

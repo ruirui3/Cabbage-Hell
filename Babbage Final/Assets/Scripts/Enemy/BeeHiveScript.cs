@@ -12,7 +12,7 @@ public class Beehive : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("bullet"))
+        if (other.CompareTag("bullet") || other.CompareTag("CurlBullet"))
         {
             if (Random.Range(0, 1.0f) < beeSpawnChanceOnHit) SpawnBee();
             hp--;
