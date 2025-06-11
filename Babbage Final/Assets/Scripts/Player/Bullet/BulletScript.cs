@@ -142,7 +142,11 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
+        if (!other.CompareTag("Enemy"))
+        {
+            return;
+        }
+        
         if (currentBulletType == 2) //Carrot bullet. Does bullet have piercing?
         {
             CarrotBulletFunction(other);
