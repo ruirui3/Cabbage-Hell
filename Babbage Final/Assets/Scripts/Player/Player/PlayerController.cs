@@ -218,73 +218,71 @@ public class PlayerController : MonoBehaviour
 
     private void UpdatePosition()
     {
+        // 1) Read raw input
         float moveInput = Input.GetAxisRaw("Horizontal");
-
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+            moveInput = 0;
+
+        // 2) Eat any input pushing *into* a wall
+        if ((transform.position.x <= leftBound && moveInput < 0) ||
+            (transform.position.x >= rightBound && moveInput > 0))
         {
             moveInput = 0;
         }
 
-        // Detect if player is reversing motion
-        bool isChangingDirection = ((moveInput != 0) && (Mathf.Sign(moveInput) != Mathf.Sign(currentVelocity)) && (currentVelocity != 0));
+        // 3) Detect reversal (input opposite of velocity)
+        bool isChangingDirection =
+            (moveInput != 0) &&
+            (Mathf.Sign(moveInput) != Mathf.Sign(currentVelocity)) &&
+            (currentVelocity != 0);
 
         if (isChangingDirection)
         {
             reversing = true;
         }
 
+        // 4) Apply acceleration or deceleration
         if (reversing)
         {
+            // Strong decel when reversing
             currentVelocity -= Mathf.Sign(currentVelocity) * deceleration * 2f * Time.deltaTime;
-
             if (Mathf.Abs(currentVelocity) < 0.1f)
             {
-                currentVelocity = 0f;
+                currentVelocity = 0;
                 reversing = false;
-            } //just set velocity to 0 if it is slow enough
+            }
         }
         else
         {
-            
-            // Normal acceleration
             if (moveInput != 0)
             {
-                float accelerationBoost = (transform.position.x <= leftBound || transform.position.x >= rightBound) ? 1.5f : 1f;
-                currentVelocity += moveInput * acceleration * accelerationBoost * Time.deltaTime;
+                // Regular acceleration
+                currentVelocity += moveInput * acceleration * Time.deltaTime;
             }
             else
             {
-                // Normal deceleration when no input is given
-                if (currentVelocity != 0)
-                {
-                    currentVelocity -= Mathf.Sign(currentVelocity) * deceleration * Time.deltaTime;
-                }
-
-                // Stop when velocity gets very small
+                // Coast to stop
+                currentVelocity -= Mathf.Sign(currentVelocity) * deceleration * Time.deltaTime;
                 if (Mathf.Abs(currentVelocity) < 0.1f)
-                {
-                    currentVelocity = 0f;
-                }
+                    currentVelocity = 0;
             }
         }
 
-        // Returns value within the min max range so that it doesn't go over or under
+        // 5) Clamp to max speed
         currentVelocity = Mathf.Clamp(currentVelocity, -maxVelocity, maxVelocity);
 
-        // Apply movement
-        transform.position += new Vector3(currentVelocity * Time.deltaTime, 0, 0) * SPEED_MULTIPLIER;
+        // 6) Calculate new position & clamp it
+        Vector3 newPos = transform.position + Vector3.right * currentVelocity * SPEED_MULTIPLIER * Time.deltaTime;
+        newPos.x = Mathf.Clamp(newPos.x, leftBound, rightBound);
 
-        transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x,
-            leftBound, rightBound), transform.position.y,
-            transform.position.z
-            ); //checks if in bound
-
-        // Stop velociy when hit bound
-        if ((transform.position.x <= leftBound && currentVelocity < 0) || (transform.position.x >= rightBound && currentVelocity > 0))
+        // 7) If we ended up at a bound *and* were pushing into it, zero out velocity
+        if ((newPos.x <= leftBound && currentVelocity < 0) ||
+            (newPos.x >= rightBound && currentVelocity > 0))
         {
-            currentVelocity = 0f;
+            currentVelocity = 0;
         }
 
+        transform.position = newPos;
     }
+
 }
