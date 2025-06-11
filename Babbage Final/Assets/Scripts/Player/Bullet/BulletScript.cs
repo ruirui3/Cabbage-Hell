@@ -44,6 +44,7 @@ public class BulletScript : MonoBehaviour
         if (currentBulletType == 2)//carrot
         {
             GetComponent<SpriteRenderer>().sprite = EnemyBullet;
+            transform.localScale = new Vector3(.4f, 0.6263527f, 0.25f);
             GetComponent<SpriteRenderer>().enabled = true;
             ToggleRenderer(false);
             speed = 5f;

@@ -106,7 +106,7 @@ MonoBehaviour:
   maxPierce: 0
   explosionSfx: {fileID: 8300000, guid: 3f2ebea1279658a4baf7d1a8d809db8d, type: 3}
   playerController: {fileID: 0}
-  EnemyBullet: {fileID: 21300000, guid: 81e6019d6b2ad4024a3b9f882d20d30f, type: 3}
+  EnemyBullet: {fileID: 21300000, guid: 716a69d0cf6684f3b9c91f764e4137ab, type: 3}
 --- !u!114 &7403713698047036858
 MonoBehaviour:
   m_ObjectHideFlags: 0
