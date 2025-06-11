@@ -57,6 +57,7 @@ public class BulletScript : MonoBehaviour
         }
         if (currentBulletType == 4) //curl
         {
+            GetComponent<SpriteRenderer>().color = new Color(1f, 0.2f, 0.2f); //red tinting
             speed = 5f;
             isCurlBullet = true;
 
