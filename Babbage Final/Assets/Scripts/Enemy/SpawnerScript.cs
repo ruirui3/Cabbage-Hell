@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
@@ -42,13 +43,13 @@ public class SpawnerScript : MonoBehaviour
             if (!isSpawningWave)
             {
                 isSpawningWave = true;
-
+                AdjustSpawningTime(waveCount);
                 float waitTime = Random.Range(minTimeBetweenWaves, maxTimeBetweenWaves);
                 yield return new WaitForSeconds(waitTime);
 
                 waveCount++;
                 Wave waveToSpawn;
-                if (maxWaveIndex < waves.Count-1 && waveCount >= waves[maxWaveIndex+1].startingAtWaveCount)
+                if (maxWaveIndex < waves.Count - 1 && waveCount >= waves[maxWaveIndex + 1].startingAtWaveCount)
                 {
                     maxWaveIndex++;
                     waveToSpawn = waves[maxWaveIndex];
@@ -85,5 +86,32 @@ public class SpawnerScript : MonoBehaviour
                 yield return new WaitForSeconds(waveEnemy.delayBetweenSpawns);
             }
         }
+    }
+
+    private void AdjustSpawningTime(int waveCount)
+    {
+        switch (waveCount)
+        {
+            case 25:
+                minTimeBetweenWaves = 2.5f;
+                break;
+            case 30:
+                maxTimeBetweenWaves = 5.5f;
+                break;
+            case 35:
+                minTimeBetweenWaves = 2f;
+                break;
+            case 40:
+                maxTimeBetweenWaves = 5f;
+                break;
+            case 50:
+                minTimeBetweenWaves = 1.5f;
+                break;
+            case 60:
+                maxTimeBetweenWaves = 4.5f;
+                break;
+        }
+
+
     }
 }
