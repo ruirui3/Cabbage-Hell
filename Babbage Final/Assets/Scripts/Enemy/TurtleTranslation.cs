@@ -37,7 +37,7 @@ public class TurtleTranslation : MonoBehaviour
         }
 
         if (hp <= 0) {
-            bulletManager.addBullet(1);
+            bulletManager.addBullet(4);
             manager.AddCombo(5);
             manager.AddScore(300);
             goPoof();

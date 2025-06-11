@@ -41,7 +41,7 @@ public class PorcupineTranslation : MonoBehaviour
         if (hp <= 0) {
             manager.AddScore(170);
             manager.AddCombo(4);
-            bulletManager.addBullet(4);
+            bulletManager.addBullet(1);
             goPoof();
         } else if (transform.position.y < bottomBound)
         {
