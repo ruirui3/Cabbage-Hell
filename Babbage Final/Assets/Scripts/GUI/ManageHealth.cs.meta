@@ -3,7 +3,9 @@ guid: 68d394f69d36fdf429c35767273cb198
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - healthBar: {instanceID: 0}
+  - deathSFX: {fileID: 8300000, guid: cf1b8a358ed19ae4986dffbcbb248a1e, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

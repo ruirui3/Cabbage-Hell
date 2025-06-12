@@ -43,7 +43,7 @@ public class ManageHealth : MonoBehaviour
         if (healthAmount - damage <= 0 && isDead == false)
         {
             healthAmount = 0; //maybe trigger game end
-            AudioSource.PlayClipAtPoint(deathSFX, transform.position);
+            AudioSource.PlayClipAtPoint(deathSFX, Vector3.zero);
             isDead = true;
         }
         else
