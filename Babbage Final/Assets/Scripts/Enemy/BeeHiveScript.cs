@@ -47,4 +47,13 @@ public class Beehive : MonoBehaviour
         manager = canvas.transform.Find("Manager").GetComponent<ManageScore>();
         
     }
+
+    
+
+    public void TakeDamage()
+    {
+        if (Random.Range(0, 1.0f) < beeSpawnChanceOnHit) SpawnBee();
+        hp--;
+        
+    }
 }

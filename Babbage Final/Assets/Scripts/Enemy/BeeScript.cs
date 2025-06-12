@@ -9,6 +9,7 @@ public class Bee : MonoBehaviour
     private Rigidbody2D rb;
     private GameObject player;
     public AudioClip damageSFX;
+   
 
 
     void Start()
@@ -57,5 +58,12 @@ public class Bee : MonoBehaviour
             }
             Destroy(gameObject);
         }
+    }
+
+    
+
+    public void TakeDamage()
+    {
+        hp--;
     }
 }

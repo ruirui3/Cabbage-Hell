@@ -19,6 +19,7 @@ public class EnemyTranslation : MonoBehaviour
     public GameObject bulletPrefab;
     public float bottomBound = -5f;
     //hp
+    
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +30,18 @@ public class EnemyTranslation : MonoBehaviour
         isInTornado = false;
         playerController = GameObject.Find("Cabbage Cart").GetComponent<PlayerController>();
         bulletManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<DropBulletScript>();
-
         
+
+    }
+
+    
+
+    public void TakeDamage()
+    {
+        bulletManager.addBullet(2);
+        manager.AddScore(100);
+        manager.AddCombo(3);
+        GoPoof();
     }
 
     // Update is called once per frame
@@ -39,6 +50,7 @@ public class EnemyTranslation : MonoBehaviour
         var step = speed * Time.deltaTime;
         //transform.Translate(Vector2.down * Time.deltaTime * speed);
 
+        
         if (isInTornado)
         {
             TurnOffMoving();
@@ -102,6 +114,9 @@ public class EnemyTranslation : MonoBehaviour
             GoPoof();
         }
     }
+
+    
+
 
     public void TurnOffMoving()
     {

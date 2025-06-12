@@ -18,6 +18,9 @@ public class PorcupineTranslation : MonoBehaviour
     public float timer = 0f;
     public float spawnInterval = .5f;
 
+    private float originalSpeed;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,5 +73,9 @@ public class PorcupineTranslation : MonoBehaviour
         if (other.gameObject.tag == "bullet" || other.CompareTag("CurlBullet")) {
             hp--;
         }
+    }
+    public void TakeDamage()
+    {
+        hp--;
     }
 }

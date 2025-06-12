@@ -29,6 +29,12 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip bulletSwitch;
 
+    public GameObject honeyBulletPrefab;
+    public float honeyExplosionRadius = 2f;
+    public float honeySlowDuration = 3f;
+    public float honeySlowFactor = 0.5f;
+
+
 
     public float GetVelocity()
     {
@@ -44,14 +50,14 @@ public class PlayerController : MonoBehaviour
     {
         bulletFiringDelay = 1f;
         bulletQueue = new Queue<int>(); //need some way to reference bullets in inventory. Current bullet types: normal (0) triple (1) carrot (2) honey (3) curl (4) tornado (5)     - mostly in terms of progression of implementation
-        
+
         EnqueueBulletType(0);
-        EnqueueBulletType(1);
+        EnqueueBulletType(3);
     }
 
     void Update()
     {
-
+        addBullet(3, 999);
         currentBulletType = bulletQueue.Peek();
         UpdatePosition();
         SeekAndRunBulletType(currentBulletType);
@@ -151,8 +157,7 @@ public class PlayerController : MonoBehaviour
         }
         if (bulletIndex == 3 && bulletCount[bulletIndex] > 0) //honey
         {
-            Debug.Log("Currently attempting to run honey bullet. Not implemented. Please swap bullet type.");
-            ms = 0;
+            HoneyBulletFunction();
         }
         if (bulletIndex == 4 && bulletCount[bulletIndex] > 0) //curl
         {
@@ -216,6 +221,14 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Currently running triple bullet");
     }
 
+    private void HoneyBulletFunction()
+    {
+        Vector3 spawnPosition = transform.position + Vector3.up * 1.5f;
+        Debug.Log("Shots fired");
+        Instantiate(honeyBulletPrefab, spawnPosition, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(carrotShot, transform.position); // Use unique sfx if desired
+        Debug.Log("Currently running honey bullet");
+    }
     private void UpdatePosition()
     {
         // 1) Read raw input

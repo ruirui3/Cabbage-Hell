@@ -84,4 +84,9 @@ public class TurtleTranslation : MonoBehaviour
             goPoof();
         }
     }
+
+    public void TakeDamage()
+    {
+        hp--;
+    }
 }
