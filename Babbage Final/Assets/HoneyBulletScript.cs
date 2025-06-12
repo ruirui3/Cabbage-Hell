@@ -3,9 +3,11 @@ using UnityEngine;
 public class HoneyBulletScript : MonoBehaviour
 {
     public float speed = 10f;
-    public float explosionRadius = 10f;
+    public float explosionRadius = 25f;
     public float slowDuration = 3f;
     public float slowFactor = 0.5f;
+    public GameObject explosionEffectPrefab; // assign in Inspector
+    public AudioClip explosionSFX; // assign in Inspector
 
     void Update()
     {
@@ -23,6 +25,9 @@ public class HoneyBulletScript : MonoBehaviour
 
     private void Explode()
     {
+        GameObject effect = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+        Destroy(effect, 2f); // cleanup
+        AudioSource.PlayClipAtPoint(explosionSFX, transform.position);
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (Collider2D hit in hits)
         {

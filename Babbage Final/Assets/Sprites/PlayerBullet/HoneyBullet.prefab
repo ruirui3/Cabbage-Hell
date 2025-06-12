@@ -51,6 +51,8 @@ MonoBehaviour:
   explosionRadius: 2
   slowDuration: 3
   slowFactor: 0.5
+  explosionEffectPrefab: {fileID: 3892657160085409178, guid: 6e6bf5500198a994fa2bc54f7c72444f, type: 3}
+  explosionSFX: {fileID: 8300000, guid: fb9040450a8ffc940afb20b96d458b30, type: 3}
 --- !u!58 &631114094672151777
 CircleCollider2D:
   m_ObjectHideFlags: 0
