@@ -9,7 +9,8 @@ public class Bee : MonoBehaviour
     private Rigidbody2D rb;
     private GameObject player;
     public AudioClip damageSFX;
-   
+    public DropBulletScript bulletManager;
+
 
 
     void Start()
@@ -18,6 +19,7 @@ public class Bee : MonoBehaviour
         manager = canvas.transform.Find("Manager").GetComponent<ManageScore>();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        bulletManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<DropBulletScript>();
     }
 
     void Update()
@@ -31,6 +33,7 @@ public class Bee : MonoBehaviour
         { // screen bottom buffer
             manager.AddScore(100);
             manager.AddCombo(3);
+            bulletManager.addBullet(3);
             Destroy(gameObject);
         }
     }

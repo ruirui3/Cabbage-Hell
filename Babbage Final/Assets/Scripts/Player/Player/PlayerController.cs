@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip bulletSwitch;
 
     public GameObject honeyBulletPrefab;
-    public float honeyExplosionRadius = 2f;
+    public float honeyExplosionRadius = 6f;
     public float honeySlowDuration = 3f;
     public float honeySlowFactor = 0.5f;
 
@@ -52,12 +52,12 @@ public class PlayerController : MonoBehaviour
         bulletQueue = new Queue<int>(); //need some way to reference bullets in inventory. Current bullet types: normal (0) triple (1) carrot (2) honey (3) curl (4) tornado (5)     - mostly in terms of progression of implementation
 
         EnqueueBulletType(0);
-        EnqueueBulletType(3);
+        EnqueueBulletType(1);
     }
 
     void Update()
     {
-        addBullet(3, 999);
+        
         currentBulletType = bulletQueue.Peek();
         UpdatePosition();
         SeekAndRunBulletType(currentBulletType);
@@ -68,6 +68,28 @@ public class PlayerController : MonoBehaviour
             SwitchBulletType();
 
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            addBullet(1, 10);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            addBullet(2, 10);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            addBullet(3, 10);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            addBullet(4, 10);
+        }
+        //cheat menu
+
 
     }
 
