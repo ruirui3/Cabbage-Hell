@@ -1409,6 +1409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
   healthAmount: 100
+  deathSFX: {fileID: 8300000, guid: cf1b8a358ed19ae4986dffbcbb248a1e, type: 3}
 --- !u!114 &540548644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2813,6 +2814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 455426821}
   healthAmount: 100
+  deathSFX: {fileID: 8300000, guid: cf1b8a358ed19ae4986dffbcbb248a1e, type: 3}
 --- !u!114 &979007542
 MonoBehaviour:
   m_ObjectHideFlags: 0
